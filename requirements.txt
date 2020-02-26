@@ -1,0 +1,9 @@
+Django==2.1
+django-ckeditor
+mysqlclient
+pymysql
+urllib3
+beautifulsoup4
+requests
+Pillow
+feedparser

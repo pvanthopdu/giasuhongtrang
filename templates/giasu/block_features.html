@@ -1,0 +1,106 @@
+{% load static %}
+<div class="features">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="section_title_container text-center">
+                    <h3 class="section_title">Chào mừng đến với trung tâm gia sư Hồng Trang</h3>
+                    <div class="section_subtitle">
+                        <blockquote>“Với phương châm giúp các bạn học sinh lấy lại kiến thức,
+                            nắm vững kiến thức; hỗ trợ, tư vấn giáo dục,
+                            trung tâm gia sư Hồng Trang cùng các bạn tiến bước tương lai,
+                            là chỗ dựa vững chắc cho các bậc phụ huynh”
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row features_row">
+
+            <!-- Features Item -->
+            <a class="col-lg-3 feature_col d-none d-lg-block" href="/forum">
+                <div class="feature text-center trans_400">
+                    <div class="feature_icon"><img class="rounded" src="{% static 'images/feature_1.png' %}" alt=""></div>
+                    <h3 class="feature_title">Hỏi đáp</h3>
+                    <div class="feature_text">Hỏi đáp các vấn đề trong học tập,tư vấn giáo dục</div>
+                </div>
+            </a>
+            <!--display in medium monitor -->
+            <a class="col-lg-3 feature_col d-lg-none" href="/forum">
+                <div class="feature trans_400 d-flex">
+                    <div class="feature_icon"><img class="rounded" src="{% static 'images/feature_1.png' %}" alt=""></div>
+                    <div class="d-flex align-items-center">
+                        <div class="d-flex flex-column">
+                            <h3 class="feature_title">Hỏi đáp</h3>
+                    <div class="feature_text">Hỏi đáp các vấn đề trong học tập,tư vấn giáo dục</div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Features Item -->
+            <a class="col-lg-3 feature_col d-none d-lg-block" href="{% url 'giasu:listcourse' %}">
+                <div class="feature text-center trans_400">
+                    <div class="feature_icon"><img src="{% static 'images/feature_2.png' %}" alt=""></div>
+                    <h3 class="feature_title">Các khóa học</h3>
+                    <div class="feature_text">Các khóa học đang mở tại trung tâm</div>
+                </div>
+            </a>
+            <!--display in medium monitor -->
+            <a class="col-lg-3 feature_col d-lg-none" href="{% url 'giasu:listcourse' %}">
+                <div class="feature trans_400 d-flex">
+                    <div class="feature_icon"><img src="{% static 'images/feature_2.png' %}" alt=""></div>
+                    <div class="d-flex align-items-center">
+                        <div class="d-flex flex-column">
+                            <h3 class="feature_title">Các khóa học</h3>
+                    <div class="feature_text">Các khóa học tại trung tâm gia sư Hồng Trang</div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Features Item -->
+            <a class="col-lg-3 feature_col d-none d-lg-block" href="#">
+                <div class="feature text-center trans_200">
+                    <div class="feature_icon"><img src="{% static 'images/feature_3.png' %}" alt=""></div>
+                    <h3 class="feature_title">Thư viện tài liệu</h3>
+                    <div class="feature_text">Thư viện tài liệu trung tâm gia sư Hồng Trang</div>
+                </div>
+            </a>
+            <!--display in medium monitor -->
+            <a class="col-lg-3 feature_col d-lg-none" href="#">
+                <div class="feature trans_400 d-flex">
+                    <div class="feature_icon"><img src="{% static 'images/feature_3.png' %}" alt=""></div>
+                    <div class="d-flex align-items-center">
+                        <div class="d-flex flex-column">
+                            <h3 class="feature_title">Thư viện tài liệu</h3>
+                            <div class="feature_text">Thư viện tài liệu trung tâm gia sư Hồng Trang</div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Features Item -->
+            <a class="col-lg-3 feature_col d-none d-lg-block" href="#team">
+                <div class="feature text-center trans_400">
+                    <div class="feature_icon"><img src="{% static 'images/feature_4.png' %}" alt=""></div>
+                    <h3 class="feature_title">Đội ngủ gia sư</h3>
+                    <div class="feature_text">Đội ngủ giảng viên, giáo viên trung tâm gia sư</div>
+                </div>
+            </a>
+            <!--display in medium monitor -->
+            <a class="col-lg-3 feature_col d-lg-none" href="#team">
+                <div class="feature trans_400 d-flex">
+                    <div class="feature_icon"><img src="{% static 'images/feature_4.png' %}" alt=""></div>
+                    <div class="d-flex align-items-center">
+                        <div class="d-flex flex-column">
+                            <h3 class="feature_title">Đội ngủ gia sư</h3>
+                            <div class="feature_text">Đội ngủ giảng viên, giáo viên trung tâm gia sư</div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+        </div>
+    </div>
+</div>

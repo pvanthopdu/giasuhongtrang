@@ -1,0 +1,35 @@
+<div class="sidebar_section">
+    <div class="sidebar_section_title">Thông tin giáo viên</div>
+    <div class="sidebar_teacher">
+        <div class="teacher_title_container d-flex">
+            <div class="teacher_image"><img src="{{ teacher.image.url }}" alt="">
+            </div>
+            <div class="teacher_title d-flex flex-column">
+                <div class="teacher_name">{{ teacher.gender }}. {{ teacher.user.first_name }} {{ teacher.user.last_name }}</div>
+                <div class="teacher_meta_container">
+                    <div class="d-flex flex-row">
+                        <div class="align-self-center">Ngày sinh:</div>
+                        <div class="align-self-center ml-auto">
+                            {{ teacher.birthdate }}</div>
+                    </div>
+                    <div class="d-flex flex-row">
+                        <div class="align-self-center">Vị trí:</div>
+                        <div class="align-self-center ml-auto">
+                            <i class="fas fa-map-marker-alt text-danger" aria-hidden="true"></i> {{ teacher.location }}</div>
+                    </div>
+                    <div class="d-flex flex-row">
+                        <div class="align-self-center">Đánh giá:</div>
+                        <div class="align-self-center ml-auto"><span>4.7 </span><i class="fa fa-star"
+                                                                                   aria-hidden="true"></i></div>
+                    </div>
+                    <div class="d-flex flex-row">
+                        <div class="align-self-center">Phản hồi:</div>
+                        <div class="align-self-center ml-auto"><span>10 </span><i class="fa fa-comment"
+                                                                                  aria-hidden="true"></i></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="teacher_info"> {{ teacher.infor }} </div>
+    </div>
+</div>

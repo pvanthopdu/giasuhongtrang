@@ -1,0 +1,9 @@
+{% for lesson in lessons %}
+    <div class="topic-title">
+        <a href="?topic={{ lesson.lesson_name }}">
+            {{ lesson.lesson_name }}
+            <span class="badge badge-topic float-right mr-2">{{ lesson.count_topic }}</span>
+        </a>
+    </div>
+{% endfor %}
+

@@ -1,0 +1,50 @@
+<!-- The Modal question -->
+{% load forum_tag %}
+<div class="modal fade" id="set-question">
+    <div class="modal-dialog modal-lg">
+        <form class="modal-content" action="{% url 'forum:addquestion' %}" method="post">
+
+            <!-- Modal Header -->
+            <div class="modal-header modal-question-header">
+                <div><i class="far fa-question-circle"></i> Đặt câu hỏi</div>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-dismissible message" id="alert-register">
+                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            <strong>{{ message|striptags }}</strong>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+                {% csrf_token %}
+                {{ questionform.media }}
+                <div class="form-group">
+                    <label for="topic" class="modal-body-label">Chọn chủ đề</label>
+                    <div class="input-group option-topic">
+                        <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class="fas fa-list" style="color: orangered"></i>
+                                    </span>
+                        </div>
+                        {% option_topic %}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="content" class="modal-body-label">Nhập nội dung câu hỏi</label>
+                    {{ questionform.content }}
+                </div>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer justify-content-start">
+                <button type="submit" class="btn modal-btn-send">Gởi câu hỏi</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+
+        </form>
+    </div>
+</div>

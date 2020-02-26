@@ -1,0 +1,18 @@
+{% load static %}
+<div class="sidebar_section">
+    <div class="sidebar_section_title">Thư viện ảnh</div>
+    <div class="sidebar_gallery">
+        <ul class="gallery_items d-flex flex-row align-items-start justify-content-between flex-wrap">
+            {% for image in images %}
+                <li class="gallery_item">
+                <div class="gallery_item_overlay d-flex flex-column align-items-center justify-content-center">
+                    +
+                </div>
+                <a class="colorbox" href="{{ image.image.url }}">
+                    <img src="{{ image.image.url }}" alt="{{ image.title }}">
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>

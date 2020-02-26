@@ -1,0 +1,179 @@
+{% extends 'giasu/base.html' %}
+{% load static %}
+{% load general_tag %}
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/about.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/about_responsive.css' %}">
+
+
+{% endblock %}
+{% block title %}
+    Gia sư Hồng Trang - Giới thiệu
+{% endblock %}
+{% block home %}
+
+    <!-- Home -->
+
+    <div class="home">
+        <div class="breadcrumbs_container">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="breadcrumbs">
+                            <ul>
+                                <li><a href="{% url 'giasu:index' %}">Home</a></li>
+                                <li>Giới thiệu</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- About -->
+    <div class="about">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="text-center">
+                        <h3 class="section_title">Gia sư Hồng Trang thân ái chào các bậc phụ huynh, các
+                            em học sinh</h3>
+                        <div class="section_subtitle"><p>“Với phương châm giúp các bạn học sinh lấy lại kiến
+                            thức, nắm vững kiến thức; hỗ trợ, tư vấn giáo dục, trung tâm gia sư Hồng Trang
+                            cùng các bạn tiến bước tương lai, là chỗ dựa vững chắc cho các bậc phụ
+                            huynh”</p></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row about_row">
+
+                <!-- About Item -->
+                <div class="col-lg-4 about_col about_col_left">
+                    <div class="about_item">
+                        <div class="about_item_image"><img src="{% static 'images/about_1.jpg' %}" alt="">
+                        </div>
+                        <div class="about_item_title "><a href="#">Gia sư Hồng Trang</a></div>
+                        <div class="about_item_text">
+                            Chúng tôi là trung tâm gia sư uy tín tại Tp Quảng Ngãi, được các bậc phụ huynh và
+                            các em học sinh tin tưởng.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- About Item -->
+                <div class="col-lg-4 about_col about_col_middle">
+                    <div class="about_item">
+                        <div class="about_item_image"><img src="{% static 'images/about_2.jpg' %}" alt=""></div>
+                        <div class="about_item_title"><a href="#">Mục tiêu</a></div>
+                        <div class="about_item_text">
+                            Giúp các bạn học sinh nắm được kiến thức cơ bản đến nâng cao các môn học theo
+                            chương trình giáo dục của BGD.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- About Item -->
+                <div class="col-lg-4 about_col about_col_right">
+                    <div class="about_item">
+                        <div class="about_item_image"><img src="{% static 'images/about_3.jpg' %}" alt=""></div>
+                        <div class="about_item_title"><a href="#">Cam kết</a></div>
+                        <div class="about_item_text">
+                            - Giáo viên nhiệt tình, có chuyên môn cao<br/>
+                            - Học sinh hiểu bài học<br/>
+                            - Phòng học thoáng mát, sạch sẽ
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- Feature -->
+
+    <div class="feature_about">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="section_title_container text-center">
+                        <h2 class="section_title"><i class='far fa-question-circle'></i>
+                            Tại sao bạn nên chọn gia sư Hồng Trang</h2>
+
+                    </div>
+                </div>
+            </div>
+            <div class="row feature_row">
+
+                <!-- Feature Content -->
+                <div class="col-lg-6 feature_col">
+                    <div class="feature_content">
+                        <!-- Accordions -->
+                        <div class="accordions">
+
+                            <div class="elements_accordions">
+
+                                <div class="accordion_container">
+                                    <div class="accordion d-flex flex-row align-items-center">
+                                        <div>Có kinh nghiệm nhiều năm giảng dạy</div>
+                                    </div>
+                                    <div class="accordion_panel">
+                                        <p>Chúng tôi là giảng viên, giáo viên các trường trong TP Quảng Ngãi, đã có kinh nghiệm
+                                            nhiều năm đứng lớp và giảng dạy.</p>
+                                    </div>
+                                </div>
+
+                                <div class="accordion_container">
+                                    <div class="accordion d-flex flex-row align-items-center active">
+                                        <div>Đội ngũ gia sư ưu tú</div>
+                                    </div>
+                                    <div class="accordion_panel">
+                                        <p>Chúng tôi là giảng viên, giáo viên tốt nghiệp trường
+                                            Đại học Bách Khoa, Đại học sư phạm Quy Nhơn; đã có kinh nghiệm
+                                            nhiều năm đứng lớp và giảng dạy.</p>
+                                    </div>
+                                </div>
+
+                                <div class="accordion_container">
+                                    <div class="accordion d-flex flex-row align-items-center">
+                                        <div>Cam kết đảm bảo chất lượng
+                                        </div>
+                                    </div>
+                                    <div class="accordion_panel">
+                                        <p>
+                                            - Học sinh hiểu và giải được bài tập vận dụng từ cơ bản đến nâng cao<br/>
+                                            - Giáo viên có chuyên môn cao, nhiệt tình trong giảng dạy<br/>
+                                            - Học sinh có thể học thử trong 1 tuần
+                                        </p>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <!-- Accordions End -->
+                    </div>
+                </div>
+
+                <!-- Feature Video -->
+                <div class="col-lg-6 feature_col">
+                    <div class="feature_video d-flex flex-column align-items-center justify-content-center">
+                        <div class="feature_video_background"
+                             style="background-image:url({% static 'images/video.jpg' %})"></div>
+                        <a class="vimeo feature_video_button" href="https://player.vimeo.com/video/99340873?title=0"
+                           title="OH, PORTUGAL - IN 4K - Basti Hansen - Stock Footage">
+                            <img src="{% static 'images/play.png' %}" alt="">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Team -->
+
+    {% block_team %}
+
+    <!-- Partners -->
+    <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static 'js/about.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,40 @@
+<div class="container">
+
+    <div class="row info_c">
+        <div class="col-sm-4 course_info_item">
+            <div class="course_info_title">
+                <div>Giáo viên:
+                    <span class="d-sm-none float-right text-right">
+                        <ul>
+                        {% for teacher in teachers %}
+                            <li style="color: #01a0e4">{{ teacher.gender }}. {{ teacher.user.first_name }}  {{ teacher.user.last_name }}</li>
+                        {% endfor %}
+                        </ul>
+                    </span>
+                </div>
+                <span class="d-none d-sm-inline">
+                    <ul>
+                     {% for teacher in teachers %}
+                          <li style="color: #01a0e4">{{ teacher.gender }}. {{ teacher.user.first_name }}  {{ teacher.user.last_name }}</li>
+                     {% endfor %}
+                     </ul>
+                </span>
+            </div>
+        </div>
+        <div class="col-sm-4 course_info_item">
+            <div class="course_info_title">
+                <div>Đánh giá:<span
+                        class="d-sm-none rating_r rating_r_{{ review }} float-right"> <i></i><i></i><i></i><i></i><i></i></span>
+                </div>
+                <span class="d-none d-sm-inline rating_r rating_r_{{ review }}"><i></i><i></i><i></i><i></i><i></i></span>
+            </div>
+        </div>
+        <div class="col-sm-4 course_info_item">
+            <div class="course_info_title">
+                <div>Môn học:<span class="d-sm-none float-right"><a
+                        href="#"> {{ cate }}</a></span></div>
+                <span class="d-none d-sm-inline"><a href="#">{{ cate }}</a></span>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,233 @@
+{% extends 'giasu/base.html' %}
+{% load static %}
+{% load general_tag %}
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/edit_group_course.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/edit_group_course_responsive.css' %}">
+
+{% endblock %}
+{% block title %}
+    {{ header }}
+{% endblock %}
+{% block home %}
+
+    <!-- Home -->
+
+    <div class="home">
+        <div class="breadcrumbs_container">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="breadcrumbs">
+                            <ul>
+                                <li><a href="{% url 'giasu:index' %}">Home</a></li>
+                                <li><a href="{% url 'giasu:listcourse' %}">Courses</a></li>
+                                <li>{{ header }}</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="contact">
+        <!-- Contact Info -->
+        <div class="contact_info_container">
+            <div class="container">
+                <form class="contact_form card" action="" method="post">
+                    <div class="card-header contact_info_title"><i class="far fa-edit"></i> {{ groupform.name.value }}
+                    </div>
+                    <div class="card-body">
+                        <div id="error-edit"></div>
+                        <div class="form-calendar-group">
+                            {% csrf_token %}
+                            <!--form group -->
+                            <div class="form-group">
+                                <label class="form_title"
+                                       for="{{ groupform.name.id_for_label }}"> Tên nhóm</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class="fas fa-users" style="color: orangered"></i>
+                                    </span>
+                                    </div>
+                                    {{ groupform.name }}
+                                </div>
+                                {% if groupform.name.errors %}
+                                    <ol>
+                                        {% for error in groupform.name.errors %}
+                                            <li><strong class="text-danger">{{ error|escape }}</strong></li>
+                                        {% endfor %}
+                                    </ol>
+                                {% endif %}
+                            </div>
+                            <!--member of group course-->
+                            <div class="form-group">
+                                <label class="form_title"
+                                       for="{{ studentform.member.id_for_label }}"> Học sinh của nhóm</label>
+                                <div class="row pl-4">
+                                    {% ceil studentform.member|length as limt %}
+                                    {% for member in studentform.member %}
+                                        {% if forloop.counter <= limt %}
+                                            <div class="col-sm-6 text-choice">{{ member }}</div>
+                                        {% else %}
+                                            <div class="col-sm-6 text-choice">{{ member }}</div>
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+                                {{ studentform.belong_course }}
+                            </div>
+                            <!--end member of group course-->
+                            {{ calendarformset.management_form }}
+                            {% if calendarformset|length > 0 %}
+                                <div class="list-calendar-group" id="calendar-group">
+                                    <div class="title-calendar">Lịch học của nhóm</div>
+                                    {% for calendarform in calendarformset %}
+                                        <div class="card card-calendar">
+                                            <div class="card-header d-flex" data-toggle="collapse"
+                                                 href="#calendar-{{ forloop.counter|add:"-1" }}"
+                                                 style="cursor: pointer; background-color: #dcfff5">
+                                                <div class="title-day-group align-self-center">{{ calendarform.day.initial|date:"d-m-Y" }}</div>
+                                                <div class="btn-delete-calendar-old ml-auto">
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input type="checkbox" class="custom-control-input"
+                                                               id="id_calendar-{{ forloop.counter|add:"-1" }}-{{ calendarform.DELETE.name }}"
+                                                               name="calendar-{{ forloop.counter|add:"-1" }}-{{ calendarform.DELETE.name }}">
+                                                        <label class="custom-control-label label-delete"
+                                                               for="id_calendar-{{ forloop.counter|add:"-1" }}-{{ calendarform.DELETE.name }}">Delete</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div id="calendar-{{ forloop.counter|add:"-1" }}" class="collapse"
+                                                 data-parent="#calendar-group">
+                                                <div class="card-body">
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            {{ calendarform.day }}
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="input-group">
+                                                                <div class="input-group-prepend">
+                                                            <span class="input-group-text">
+                                                                <i class="far fa-clock"></i>Start
+                                                            </span>
+                                                                </div>
+                                                                {{ calendarform.start_time }}
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="input-group">
+                                                                <div class="input-group-prepend">
+                                                            <span class="input-group-text">
+                                                                <i class="far fa-clock"></i>End
+                                                            </span>
+                                                                </div>
+                                                                {{ calendarform.end_time }}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="pt-3">
+                                                        <label class="form_title pb-0">Học sinh tham gia buổi
+                                                            học
+                                                            <span class="badge badge-warning">0</span></label>
+                                                        <div class="row pl-4 member-impl-group-{{ forloop.counter }}">
+                                                            {% ceil calendarform.users_impled|length as limt %}
+                                                            {% for member in calendarform.users_impled %}
+                                                                {% if forloop.counter <= limt %}
+                                                                    <div class="col-sm-6 text-member">{{ member }}</div>
+                                                                {% else %}
+                                                                    <div class="col-sm-6 text-member">{{ member }}</div>
+                                                                {% endif %}
+
+                                                            {% endfor %}
+                                                        </div>
+                                                        {{ calendarform.group_impl }}
+                                                        {{ calendarform.id }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                            <!--add new calendar of group course-->
+                            <div class="calendar-new-group d-none" id="add-calendar-group">
+                                <div class="form_title">Lịch học mới của nhóm</div>
+                            </div>
+                            <div class="btn-add-calendar"><i class="fas fa-plus-circle"></i> Thêm lịch học nhóm</div>
+                            <div hidden id="count-member">{{ studentform.member|length }}</div>
+                            <div hidden id="count-calendar">{{ calendarformset|length }}</div>
+                        </div>
+                    </div>
+                    <div class="card-footer justify-content-start">
+                        <button class="btn btn-danger" type="submit">Cập nhật</button>
+                        <div class="btn btn-outline-danger" style="cursor: pointer"
+                             onClick="javascript:history.go(-1);">Hủy
+                        </div>
+                    </div>
+                </form>
+                <!--form empty for add new calendar to group-->
+                <div class="d-none" id="empty_form">
+                    <div class="card card-calendar">
+                        <div class="card-header d-flex" data-toggle="collapse"
+                             href="#calendar-__prefix__"
+                             style="cursor: pointer; background-color: #dcfff5">
+                            <div class="title-day-group align-self-center">#</div>
+                            <div class="btn-delete-calendar ml-auto">
+                                <i class='far fa-trash-alt'></i></div>
+                        </div>
+                        <div id="calendar-__prefix__" class="collapse show"
+                             data-parent="#add-calendar-group">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        {{ calendarformset.empty_form.day }}
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">
+                                                    <i class="far fa-clock"></i>Start
+                                                </span>
+                                            </div>
+                                            {{ calendarformset.empty_form.start_time }}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                            <span class="input-group-text">
+                                                                <i class="far fa-clock"></i>End
+                                                            </span>
+                                            </div>
+                                            {{ calendarformset.empty_form.end_time }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group pt-3">
+                                    <label class="form_title pb-0">Học sinh tham gia buổi học
+                                        <span class="badge badge-warning">0</span></label>
+                                    <div class="row pl-4 member-impl-group-{{ forloop.counter }}">
+                                        {% ceil calendarformset.empty_form.users_impled|length as limt %}
+                                        {% for member in calendarformset.empty_form.users_impled %}
+                                            {% if forloop.counter <= limt %}
+                                                <div class="col-sm-6 text-member">{{ member }}</div>
+                                            {% else %}
+                                                <div class="col-sm-6 text-member">{{ member }}</div>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                {{ calendarformset.empty_form.group_impl }}
+                                {{ calendarformset.empty_form.id }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static 'js/edit-group-course.js' %}"></script>
+{% endblock %}
+

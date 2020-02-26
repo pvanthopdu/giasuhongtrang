@@ -1,0 +1,10 @@
+Chào quản trị.
+Có Học sinh/Phụ huynh đăng ký tham gia khóa học tại Gia Sư Hồng Trang.
+Thông tin chi tiết:
+-------------------
+Người đăng ký: {{ name_register }}.
+Số điện thoại: {{ phone_register }}.
+Khóa học đăng ký: {{ course_register }}.
+Tin nhắn: {{ msg_register }}.
+-------------------
+Mong quản trị xem xét duyệt.

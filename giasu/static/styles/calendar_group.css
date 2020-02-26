@@ -1,0 +1,71 @@
+.text-month, .weekheader{
+    color: red;
+    background-color: #d1f1a9;
+}
+.mon{
+    color: #1c00cf;
+    /*border: 1px solid #8fc13e;*/
+}
+
+.sat{
+    color: #fb8822;
+    background-color: #ffffcce0;
+}
+.sun{
+    color: #fb8822;
+    background-color: #ffffcce0;
+}
+ul{
+    padding-left: 0px;
+}
+ul>a:link, ul>a:visited{
+    line-height: 1.5;
+}
+ul>a:hover{
+    text-decoration: none;
+    color: #FF6400;
+}
+h1{
+    font-size: 20px;
+    color: #fb8822;
+}
+.table td{
+    padding-top: 0px;
+    padding-right: 0px;
+}
+td:hover{
+    background-color: #EFEFAF;
+}
+td:hover>.d-flex>.add-calendar{
+    display: block;
+}
+.submit-row a.deletelink {
+    height: auto;
+}
+.current{
+    background-color: #DDFF07;
+}
+.title-day{
+    margin-top: 10px;
+}
+.add-calendar{
+    display: none;
+    margin-top: -2px;
+    margin-right: -1.5px;
+    font-size: x-large;
+    cursor: pointer;
+}
+.add-calendar i{
+    color: #fb8822;
+}
+.header-month{
+    text-align: center;
+    background-color: #feeebd;
+    color: #1c00cf;
+    box-shadow: 5px 5px 20px #feeebd;
+}
+.header-day{
+    margin-left: -12px;
+    padding-left: 12px;
+    /*background-color: #d1f1a9;*/
+}

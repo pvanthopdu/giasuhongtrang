@@ -1,0 +1,283 @@
+{% extends 'giasu/base.html' %}
+{% load static %}
+{% load general_tag %}
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/addcourse.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/addcourse_responsive.css' %}">
+
+{% endblock %}
+{% block title %}
+    {{ header }}
+{% endblock %}
+{% block home %}
+
+    <!-- Home -->
+
+    <div class="home">
+        <div class="breadcrumbs_container">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="breadcrumbs">
+                            <ul>
+                                <li><a href="{% url 'giasu:index' %}">Home</a></li>
+                                <li><a href="{% url 'giasu:listcourse' %}">Courses</a></li>
+                                <li>{{ header }}</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="contact">
+        <!-- Contact Info -->
+        <div class="contact_info_container">
+            <div class="container">
+                <div class="contact_form card">
+                    <div class="card-header contact_info_title">{{ header }}</div>
+                    <div class="card-body">
+
+                        <div id="error"></div>
+                        <form class="comment_form" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {{ course.media }}
+                            <div class="form-group">
+                                <label class="form_title"
+                                       for="{{ course.course_name.id_for_label }}"> Course name</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class="fas fa-newspaper-o icon" style="color: orangered"></i>
+                                    </span>
+                                    </div>
+                                    {{ course.course_name }}
+                                </div>
+                                {% if course.course_name.errors %}
+                                    <ol>
+                                        {% for error in course.course_name.errors %}
+                                            <li><strong class="text-danger">{{ error|escape }}</strong></li>
+                                        {% endfor %}
+                                    </ol>
+                                {% endif %}
+                            </div>
+                            <div class="form-group">
+                                <label class="form_title"
+                                       for="{{ course.course_description.id_for_label }}"> Description of course</label>
+                                <div class="input-group">
+                                    {{ course.course_description }}
+                                </div>
+                                {% if course.course_description.errors %}
+                                    <ol>
+                                        {% for error in course.course_description.errors %}
+                                            <li><strong class="text-danger">{{ error|escape }}</strong></li>
+                                        {% endfor %}
+                                    </ol>
+                                {% endif %}
+                            </div>
+                            <div class="form-group">
+                                <label class="form_title"
+                                       for="{{ course.course_target.id_for_label }}"> Target of course</label>
+                                <div class="input-group">
+                                    {{ course.course_target }}
+                                </div>
+                                {% if course.course_target.errors %}
+                                    <ol>
+                                        {% for error in course.course_target.errors %}
+                                            <li><strong class="text-danger">{{ error|escape }}</strong></li>
+                                        {% endfor %}
+                                    </ol>
+                                {% endif %}
+                            </div>
+                            <div class="form-group">
+                                <label class="form_title"
+                                       for="{{ course.course_require.id_for_label }}"> Requirements of course</label>
+                                <div class="input-group">
+                                    {{ course.course_require }}
+                                </div>
+                                {% if course.course_require.errors %}
+                                    <ol>
+                                        {% for error in course.course_require.errors %}
+                                            <li><strong class="text-danger">{{ error|escape }}</strong></li>
+                                        {% endfor %}
+                                    </ol>
+                                {% endif %}
+                            </div>
+                            <div class="form-group">
+                                <label class="form_title"
+                                       for="{{ course.course_image.id_for_label }}"> Image of course</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class="fas fa-newspaper-o icon" style="color: orangered"></i>
+                                    </span>
+                                    </div>
+                                    {{ course.course_image }}
+                                </div>
+                                {% if course.course_image.errors %}
+                                    <ol>
+                                        {% for error in course.course_image.errors %}
+                                            <li><strong class="text-danger">{{ error|escape }}</strong></li>
+                                        {% endfor %}
+                                    </ol>
+                                {% endif %}
+                            </div>
+                            <div class="form-group">
+                                <label class="form_title"
+                                       for="{{ course.course_image.id_for_label }}"> Duration of course</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class="fas fa-clock-o icon" style="color: orangered"></i>
+                                    </span>
+                                    </div>
+                                    {{ course.course_duration }}
+                                </div>
+                                {% if course.course_duration.errors %}
+                                    <ol>
+                                        {% for error in course.course_duration.errors %}
+                                            <li><strong class="text-danger">{{ error|escape }}</strong></li>
+                                        {% endfor %}
+                                    </ol>
+                                {% endif %}
+                            </div>
+                            <div class="form-group">
+                                <label class="form_title"
+                                       for="{{ course.course_price.id_for_label }}"> Price of course</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                    <span class="input-group-text" style="color: orangered">
+                                        VNĐ
+                                    </span>
+                                    </div>
+                                    {{ course.course_price }}
+                                </div>
+                                {% if course.course_price.errors %}
+                                    <ol>
+                                        {% for error in course.course_price.errors %}
+                                            <li><strong class="text-danger">{{ error|escape }}</strong></li>
+                                        {% endfor %}
+                                    </ol>
+                                {% endif %}
+                            </div>
+                            <div class="form-group">
+                                <label class="form_title"
+                                       for="{{ course.course_cate.id_for_label }}"> Category of course</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class="fas fa-bars icon" style="color: orangered"></i>
+                                    </span>
+                                    </div>
+                                    {{ course.course_cate }}
+                                </div>
+                                {% if course.course_cate.errors %}
+                                    <ol>
+                                        {% for error in course.course_cate.errors %}
+                                            <li><strong class="text-danger">{{ error|escape }}</strong></li>
+                                        {% endfor %}
+                                    </ol>
+                                {% endif %}
+                            </div>
+                            <div class="form-group">
+                                <label class="form_title"
+                                       for="{{ course.course_teachers.id_for_label }}"> Choice teacher for
+                                    course</label>
+                                <div class="row pl-4">
+                                    {% ceil course.course_teachers|length as limt %}
+                                    {% for choice in course.course_teachers %}
+                                        {% if forloop.counter <= limt %}
+                                            <div class="col-sm-6 text-choice">{{ choice }}</div>
+                                        {% else %}
+                                            <div class="col-sm-6 text-choice">{{ choice }}</div>
+                                        {% endif %}
+
+                                    {% endfor %}
+                                </div>
+                                {% if course.course_teachers.errors %}
+                                    <ol>
+                                        {% for error in course.course_teachers.errors %}
+                                            <li><strong class="text-danger">{{ error|escape }}</strong></li>
+                                        {% endfor %}
+                                    </ol>
+                                {% endif %}
+                            </div>
+                            <div class="form-group">
+                                <label class="form_title"
+                                       for="{{ course.course_students.id_for_label }}"> Add student into course</label>
+                                <div class="row pl-4">
+                                    {% ceil course.course_students|length as limt %}
+                                    {% for choice in course.course_students %}
+                                        {% if forloop.counter <= limt %}
+                                            <div class="col-sm-6 text-choice">{{ choice }}</div>
+                                        {% else %}
+                                            <div class="col-sm-6 text-choice">{{ choice }}</div>
+                                        {% endif %}
+
+                                    {% endfor %}
+                                </div>
+                                {% if course.course_students.errors %}
+                                    <ol>
+                                        {% for error in course.course_students.errors %}
+                                            <li><strong class="text-danger">{{ error|escape }}</strong></li>
+                                        {% endfor %}
+                                    </ol>
+                                {% endif %}
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form_title"
+                                       for="{{ course.course_status.id_for_label }}"> Status of course</label>
+                                <div class="checkbox text-dark">
+                                    {{ course.course_status }}
+                                    <label>Check to active this course</label>
+                                </div>
+                                {% if course.course_status.errors %}
+                                    <ol>
+                                        {% for error in course.course_status.errors %}
+                                            <li><strong class="text-danger">{{ error|escape }}</strong></li>
+                                        {% endfor %}
+                                    </ol>
+                                {% endif %}
+                            </div>
+
+                            <div class="card-footer" >
+                                <button class="btn btn-danger" type="submit">Submit</button>
+                                <div class="btn btn-outline-danger" style="cursor: pointer" onClick="javascript:history.go(-1);">Cancel</div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+
+{% endblock %}
+{% block javascript %}
+    <script>
+        $("#id_course_name").on('keypress keydown keyup', function () {
+            var course_name = $(this).val();
+            $.ajax({
+                url: '{% url 'giasu:validate_course_name' %}',
+                data: {
+                    'course_name': course_name
+                },
+                dataType: 'json',
+                success: function (data) {
+                    if (data.is_course) {
+                        $("#error").addClass("alert alert-danger");
+                        $("#error").text(data.error_message);
+                    }
+                    else {
+                        $("#error").removeClass("alert alert-danger");
+                        $("#error").text("");
+                    }
+                }
+
+            });
+        });
+    </script>
+{% endblock %}
+

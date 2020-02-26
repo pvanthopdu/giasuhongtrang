@@ -1,0 +1,53 @@
+{% load static %}
+<!-- Feature -->
+<div class="sidebar_section">
+    <div class="sidebar_section_title">Thông tin khóa học</div>
+    <div class="sidebar_feature">
+        <!-- Features -->
+        <div class="feature_list">
+
+            <!-- Feature -->
+            <div class="d-flex flex-row align-items-center justify-content-start">
+                <div class="feature_title"><i class="fas fa-book-reader"
+                                              aria-hidden="true"></i><span>Tên khóa học:</span>
+                </div>
+                <div class="feature_title-right ml-auto text-success">{{ course.course_name }}</div>
+            </div>
+            <div class="d-flex flex-row align-items-center justify-content-start">
+                <div class="feature_title"><i class="far fa-calendar-alt"
+                                              aria-hidden="true"></i><span>Thời gian học:</span>
+                </div>
+                <div class="feature_title-right ml-auto text-success">{{ course.course_duration }}</div>
+            </div>
+
+            <!-- Feature -->
+            <div class="d-flex flex-row align-items-center justify-content-start">
+                <div class="feature_title"><i class="fas fa-chalkboard-teacher"
+                                              aria-hidden="true"></i><span>Giáo viên:</span>
+                </div>
+                <div class="feature_title-right ml-auto text-success text-right">{{ teaches }}</div>
+            </div>
+
+            <!-- Feature -->
+            <div class="d-flex flex-row align-items-center justify-content-start">
+                <div class="feature_title"><i class="far fa-edit"
+                                              aria-hidden="true"></i><span>Số bài học:</span>
+                </div>
+                <div class="feature_title-right ml-auto text-success">{{ num_lesson }}</div>
+            </div>
+
+            <!-- Feature -->
+            <div class="d-flex flex-row align-items-center justify-content-start">
+                <div class="feature_title"><i class="fas fa-users" aria-hidden="true"></i><span>Số lượng học sinh:</span>
+                </div>
+                <div class="feature_title-right ml-auto text-success">{{ num_student }}</div>
+            </div>
+            <div class="d-flex flex-row align-items-center justify-content-start">
+                <div class="feature_title_iconVN"><img class="rounded-circle" aria-hidden="true"
+                                                       src="{% static 'images/iconvn.jpg' %}"><span class="iconvn">Học phí:</span>
+                </div>
+                <div class="feature_title-right ml-auto text-success">500 VND</div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,97 @@
+.login-block {
+    /*background: #DE6262; !* fallback for old browsers *!*/
+    /*background: -webkit-linear-gradient(to bottom, #FFB88C, #DE6262); !* Chrome 10-25, Safari 5.1-6 *!*/
+    /*background: linear-gradient(to bottom, #FFB88C, #DE6262); !* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ *!*/
+    float: left;
+    width: 100%;
+    padding: 50px 0;
+
+}
+
+.banner-sec {
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    border-radius: 0 10px 10px 0;
+    padding: 0;
+}
+
+.container {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 15px 20px 0px rgba(0, 0, 0, 0.1);
+    border: solid;
+    border-color: #047c2a;
+}
+
+.login-sec {
+    padding: 30px 30px;
+    position: relative;
+}
+
+.login-sec h2 {
+    margin-bottom: 10px;
+    font-weight: 800;
+    font-size: 30px;
+    color: #DE6262;
+}
+
+.login-sec h2:after {
+    content: " ";
+    width: 200px;
+    height: 5px;
+    background: #FEB58A;
+    display: block;
+    margin-top: 5px;
+    border-radius: 3px;
+    margin-left: auto;
+    margin-right: auto
+}
+.login-sec h4 {
+    margin-top: 30px;
+    margin-bottom: 10px;
+    font-weight: 700;
+    font-size: 24px;
+    color: #1c7430;
+}
+
+.btn-login {
+    background: #DE6262;
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+}
+.btn-login:hover{
+    background-color: #eb8f00;
+}
+.btn-home{
+    background: #8fc13e;
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+}
+.btn-home:hover{
+    color: #fdf6e3;
+    background-color: #eb8f00;
+}
+.footer{
+    color: #047c2a;
+    font-weight: bold;
+    padding: 20px 0px 10px 0px;
+}
+.errorlist{
+    color: red;
+    font-style: italic;
+    list-style-type:none ;
+}
+.icon-face{
+    color: #3B5998;
+    cursor: pointer;
+}
+.icon-twiter{
+    color: #55ACEE;
+    cursor: pointer;
+}
+.icon-google{
+    color: #dd4b39;
+    cursor: pointer;
+}

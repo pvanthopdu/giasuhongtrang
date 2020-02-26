@@ -1,0 +1,146 @@
+{% extends 'giasu/base.html' %}
+{% load course_tag %}
+{% load cate_tag %}
+{% load general_tag %}
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'plugins/colorbox/colorbox.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/owl.carousel.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/owl.theme.default.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/animate.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/courses.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/courses_responsive.css' %}">
+
+{% endblock %}
+{% block title %}
+    Gia sư Hồng Trang - Các khóa học
+{% endblock %}
+{% block home %}
+    <!-- Home -->
+    <div class="home">
+        <div class="breadcrumbs_container">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="breadcrumbs">
+                            <ul>
+                                <li><a href="{% url 'giasu:index' %}">Home</a></li>
+                                <li>Courses</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Courses -->
+    <div class="courses">
+        <div class="container">
+            <div class="row">
+
+                <!-- Courses Main Content -->
+                <div class="col-lg-8">
+                    {% block_search %}
+                    <div class="courses_container">
+                        <div class="row courses_row">
+
+                            <!-- Course -->
+                            {% for course in courses %}
+                                <div class="col-lg-6 course_col">
+                                    <div class="course">
+                                        <div class="course_image"><img src="{{ course.course_image.url }}" alt=""></div>
+                                        <div class="course_body">
+                                            <div class="d-flex">
+                                                <h3 class="course_title mr-auto"><a
+                                                        href="{% url 'giasu:course' course.id %}">{{ course.course_name }}</a>
+                                                </h3>
+                                                <div class="btn-register trans_200" data-toggle="modal"
+                                                     data-target="#registry_Course">
+                                                    <a href="#" class="btn btn-outline-warning pt-1 pb-1">
+                                                        <i class="fas fa-cart-plus"
+                                                           style="color:#00a23f"> Đăng ký</i>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div class="course_teacher">
+                                                {% teacher_name course %}
+                                            </div>
+
+                                            <div class="course_text">
+                                                {{ course.course_description|truncatewords_html:30|safe }}
+                                            </div>
+                                        </div>
+                                        <div class="course_footer">
+                                            <div class="course_footer_content d-flex flex-row align-items-center justify-content-start">
+                                                <div class="course_info">
+                                                    <i class="fa fa-user-friends" aria-hidden="true"></i>
+                                                    <span>{% count_student course %}</span>
+                                                </div>
+                                                <div class="course_info">
+                                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                                    <span>{% review_course course %} Ratings</span>
+                                                </div>
+                                                <div class="course_price ml-auto">{{ course.course_price }} VNĐ</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+
+                        </div>
+                        {% if courses.has_other_pages %}
+                            <div class="row pagination_row">
+                                <div class="col">
+                                    <div class="pagination_container d-flex flex-row align-items-center justify-content-start">
+                                        <ul class="pagination_list">
+                                            {% if courses.has_previous %}
+                                                <li><a href="?page={{ courses.previous_page_number }}"><i
+                                                        class="fa fa-angle-left" aria-hidden="true"></i></a></li>
+                                            {% endif %}
+                                            {% for page_num in courses.paginator.page_range %}
+                                                {% if page_num == courses.number %}
+                                                    <li class="active"><a href="#">{{ page_num }}</a></li>
+                                                {% else %}
+                                                    <li><a href="?page={{ page_num }}">{{ page_num }}</a></li>
+                                                {% endif %}
+                                            {% endfor %}
+                                            {% if course.has_next %}
+                                                <li><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                                                </li>
+                                            {% endif %}
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <!-- Courses Sidebar -->
+                <div class="col-lg-4">
+                    <div class="sidebar">
+                        <!-- Categories -->
+                        {% categories %}
+
+                        <!-- Latest Course -->
+                        {% latest_courses %}
+
+
+                        <!-- Gallery -->
+                        {% gallery %}
+
+                        <!-- Tags -->
+                        {% include 'giasu/tags.html' %}
+                        <!-- facebook-->
+                        {% include 'giasu/facebook.html' %}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static 'js/courses.js' %}"></script>
+{% endblock %}

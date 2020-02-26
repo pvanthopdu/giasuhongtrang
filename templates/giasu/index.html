@@ -1,0 +1,54 @@
+{% extends 'giasu/base.html' %}
+{% load static %}
+{% load cate_tag %}
+{% load carouselSilse_tag %}
+{% load general_tag %}
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/owl.carousel.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/owl.theme.default.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/animate.css' %}">
+
+{% endblock %}
+{% block title %}
+    Gia sư Hồng Trang
+{% endblock %}
+
+<!-- Home -->
+
+{% block home %}
+    {% block_carousel %}
+{% endblock %}
+
+<!-- Features -->
+
+{% block feature %}
+    {% block_search %}
+    {% include 'giasu/block_features.html' %}
+
+{% endblock %}
+
+<!-- Popular Courses -->
+
+{% block courses %}
+    <!-- Popular Courses -->
+    {% block_popularCourses %}
+
+{% endblock %}
+
+<!-- Latest News -->
+
+{% block news %}
+    <!-- Latest News -->
+    {% block_news_education %}
+{% endblock %}
+
+<!-- Team -->
+
+{% block team %}
+    <!-- Team -->
+    {% block_team %}
+{% endblock %}
+
+
+
+

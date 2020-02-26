@@ -1,0 +1,105 @@
+{% extends 'forum/base.html' %}
+{% load static %}
+{% load carouselSilse_tag %}
+{% load forum_tag %}
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/forum.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/owl.carousel.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/owl.theme.default.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/animate.css' %}">
+
+{% endblock %}
+{% block title %}
+    Gia sư Hồng Trang - Forum
+{% endblock %}
+
+<!-- Home -->
+
+{% block home %}
+    {% block_carousel %}
+{% endblock %}
+
+{% block search %}
+    {% include 'forum/search.html' %}
+{% endblock %}
+<!-- forum -->
+
+{% block forum %}
+    <div class="container">
+
+        <div class="row forum">
+            <div class="col-lg-9 pb-3">
+                {% for question in questions %}
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="forum-info" id="{{ question.id }}">
+                                    <div class="text-center">
+                                        <img src="{{ question.user.image.url }}"
+                                             class="rounded-circle" alt="{{ question.user.user.firstname }}">
+                                    </div>
+                                    <div class="text-center btn-question-like">
+                                        <i class="far fa-thumbs-up"></i> {{ question.like }}
+                                    </div>
+                                </div>
+                                <div class="forum-content">
+                                    <a href="{% url 'forum:questiondetail' question.id %}"
+                                       class="forum-ques">{{ question.content|safe|truncatewords_html:30 }}</a>
+                                    <div class="forum-date"><i
+                                            class="far fa-calendar-alt"></i> {{ question.time|date:'d-m-y, h:s A' }}
+                                    </div>
+                                </div>
+                                <div class="forum-info bg-light" style="margin: -1.25em 0px -1.25em 0px">
+                                    <div class="text-center">
+                                        <i class="far fa-comment-alt img-comment"></i>
+                                        <div class="number-comment"><span>{{ question.count_discus }}</span></div>
+                                    </div>
+                                    <div class="text-center"><i class="far fa-eye"></i> {{ question.view }}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+
+                {% if questions.has_other_pages %}
+                    <div class="row pagination_row">
+                        <div class="col">
+                            <div class="pagination_container d-flex flex-row align-items-center justify-content-start">
+                                <ul class="pagination_list">
+                                    {% if questions.has_previous %}
+                                        <li><a href="?page={{ questions.previous_page_number }}"><i
+                                                class="fa fa-angle-left" aria-hidden="true"></i></a></li>
+                                    {% endif %}
+                                    {% for page_num in questions.paginator.page_range %}
+                                        {% if page_num == questions.number %}
+                                            <li class="active"><a href="#">{{ page_num }}</a></li>
+                                        {% else %}
+                                            <li><a href="?page={{ page_num }}">{{ page_num }}</a></li>
+                                        {% endif %}
+                                    {% endfor %}
+                                    {% if questions.has_next %}
+                                        <li><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                                        </li>
+                                    {% endif %}
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+            <div class="col-lg-3">
+                {% topic %}
+                {% include 'forum/question_hot.html' %}
+            </div>
+        </div>
+        {% addquestion %}
+    </div>
+{% endblock %}
+
+
+
+
+
+
+

@@ -1,0 +1,29 @@
+<div class="feature_search d-none d-sm-block">
+        {#        <div class="section_background parallax-window" data-parallax="scroll"#}
+        {#             data-image-src="{% static 'images/courses_background.jpg' %}" data-speed="0.8"></div>#}
+        <div class="container">
+            <!-- form search -->
+            <form action="{% url 'giasu:listcourse' %}" method="post"
+                  class="feature_search_form d-flex flex-column align-items-center justify-content-between">
+                {% csrf_token %}
+                <div class="row feater_search_container d-flex flex-row align-items-center justify-content-start">
+                    <div class="col-sm-6">
+                        <div class="input-group">
+                            <span class="feature_icon_search">
+                                <i class="fa fa-search" style="color: green; font-size: large"></i></span>
+                            <input type="search" class="form-control feature_search_input" id="search"
+                                   placeholder="Nhập tên khóa học cần tìm"     name="search_course">
+                        </div>
+                    </div>
+                    <select class="col-sm-4 dropdown_item_select home_search_input form-control" name="select_cate">
+                        <option>Chọn danh mục khóa học</option>
+                        {% for cate in categories %}
+                            <option>{{ cate.cate_name }}</option>
+                        {% endfor %}
+                    </select>
+                    <button type="submit" class="col-sm-2 btn btn-info">search</button>
+                </div>
+            </form>
+        </div>
+        <!-- end form search -->
+    </div>

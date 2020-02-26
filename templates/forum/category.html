@@ -1,0 +1,18 @@
+{% load forum_tag %}
+<div class="sidebar_section">
+    <div class="sidebar_section_title"><i class="far fa-list-alt"></i> Chủ đề</div>
+    <div class="sidebar_categories overflow-auto">
+        <ul id="accordion">
+            {% for course in courses %}
+                <li>
+                    <a class="category" href="#course-{{ course.id }}" data-toggle="collapse">{{ course.course_name }}
+                        <span class="badge badge-info float-right mt-3 mr-2">{{ course.count_lesson }}</span></a>
+                    <div id="course-{{ course.id }}" class="collapse" data-parent="#accordion">
+                        {% collapse_lesson course %}
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+
+    </div>
+</div>

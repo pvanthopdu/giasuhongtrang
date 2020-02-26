@@ -1,0 +1,188 @@
+@charset "utf-8";
+/* CSS Document */
+
+/******************************
+
+
+/*********************************
+6. Home
+*********************************/
+
+.home {
+    width: 100%;
+    height: 160px;
+    background: #f2f4f5;
+    border-bottom: solid 1px #edeff0;
+}
+
+.breadcrumbs_container {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    padding-bottom: 13px;
+    padding-left: 3px;
+}
+
+.breadcrumbs ul li {
+    display: inline-block;
+    position: relative;
+}
+
+.breadcrumbs ul li:not(:last-child)::after {
+    display: inline-block;
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: "\f105";
+    margin-left: 7px;
+    margin-right: 4px;
+    color: #384158;
+}
+
+.breadcrumbs ul li a {
+    font-size: 14px;
+    font-weight: 400;
+    color: #384158;
+    -webkit-transition: all 200ms ease;
+    -moz-transition: all 200ms ease;
+    -ms-transition: all 200ms ease;
+    -o-transition: all 200ms ease;
+    transition: all 200ms ease;
+}
+
+.breadcrumbs ul li a:hover {
+    color: #14bdee;
+}
+
+/*********************************
+7. Contact
+*********************************/
+.contact {
+    width: 100%;
+    padding-bottom: 10px;
+}
+
+.contact_info_container {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.contact_info_title {
+    font-family: 'Roboto Slab', serif;
+    font-size: 25px;
+    font-weight: 700;
+    color: #06B0E8;
+}
+
+.contact_form {
+    /*padding-right: 10px;*/
+    margin-top: 10px;
+    box-shadow: 0px 5px 40px rgba(200, 200, 47, 0.85);
+}
+
+/*calendar table*/
+.text-month, .weekheader{
+    color: red;
+    background-color: #d1f1a9;
+}
+.mon{
+    color: #1c00cf;
+    /*border: 1px solid #8fc13e;*/
+}
+
+.sat{
+    color: #fb8822;
+    background-color: #ffffcce0;
+}
+.sun{
+    color: #fb8822;
+    background-color: #ffffcce0;
+}
+ul{
+    padding-left: 0px;
+}
+ul>a:link, ul>a:visited{
+    line-height: 1.5;
+}
+ul>a:hover{
+    text-decoration: none;
+    color: #FF6400;
+}
+h1{
+    font-size: 20px;
+    color: #fb8822;
+}
+.table td{
+    padding-top: 0px;
+    padding-right: 0px;
+}
+/*td{*/
+    /*min-width: 150px;*/
+    /*min-height: 150px;*/
+/*}*/
+td:hover{
+    background-color: #EFEFAF;
+}
+td:hover>.d-flex>.add-calendar{
+    display: block;
+}
+.submit-row a.deletelink {
+    height: auto;
+}
+.current{
+    background-color: #DDFF07;
+}
+.title-day{
+    margin-top: 10px;
+}
+.add-calendar{
+    display: none;
+    margin-top: -6px;
+    margin-right: -1.5px;
+    font-size: x-large;
+    cursor: pointer;
+}
+.add-calendar i{
+    color: #fb8822;
+}
+.header-month{
+    text-align: center;
+    background-color: #feeebd;
+    color: #1c00cf;
+    box-shadow: 5px 5px 20px #feeebd;
+}
+.header-day{
+    margin-left: -12px;
+    padding-left: 12px;
+}
+.card-header{
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+.card-header>i{
+    color: #FF6400;
+    font-weight: 700;
+}
+.card-body{
+    padding: 0px 5px 20px 5px;
+}
+
+/*
+modal add celandar for group course
+ */
+
+.modal-header{
+    background-color: #d1f1a9;
+}
+.modal-header>.modal-title{
+    color: #00a23f;
+}
+.title-calendar{
+    font-size: 16px;
+    font-weight: bolder;
+    color: #29a329;
+}
+.text-member{
+    color: #29a329;
+    font-weight: 500;
+}

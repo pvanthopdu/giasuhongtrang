@@ -1,0 +1,21 @@
+<ul>
+    <li>
+        {% for lesson in lessons %}
+            <div class="dropdown_item">
+                <div class="d-flex align-items-center dropdown_item_title">
+                    <div class="mr-auto lesson-title">{{ lesson.lesson_name }}</div>
+                    {% if isEdit == True %}
+                        <a class="pr-2"
+                           href="{% url 'giasu:editlesson' lesson.id %}"
+                           data-toggle="tooltip" data-placement="bottom"
+                           title="Edit course"><i
+                                class="far fa-edit"></i></a>
+                    {% endif %}
+                </div>
+                <div class="dropdown_item_text">
+                    {{ lesson.lesson_recap }}
+                </div>
+            </div>
+        {% endfor %}
+    </li>
+</ul>

@@ -1,0 +1,116 @@
+{% extends 'giasu/base.html' %}
+{% load static %}
+{% load course_tag %}
+{% load cate_tag %}
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'plugins/colorbox/colorbox.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/blog_single.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/blog_single_responsive.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/vietnamnet.css' %}">
+
+{% endblock %}
+{% block home %}
+
+    <!-- Home -->
+
+    <div class="home">
+        <div class="breadcrumbs_container">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="breadcrumbs">
+                            <ul>
+                                <li><a href="{% url 'giasu:index' %}">Home</a></li>
+                                <li>Tin tức giáo dục</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Blog -->
+
+    <div class="blog">
+        <div class="container">
+            <div class="row">
+
+                <!-- Blog Content -->
+                <div class="col-lg-8">
+                    <div class="blog_content">
+                        <div class="blog_title">{{ title }}</div>
+                        <div class="blog_meta">
+                            <ul>
+                                <li>Post on <a href="#">{{ datepub }}</a></li>
+                                <li>By <a href="#">vietnamnet.vn</a></li>
+                            </ul>
+                        </div>
+                        <p>
+                            {{ articleContent|safe }}
+                        </p>
+                        {% for inner in inners %}
+                            <div class="inner-article">
+                                <a href="{% url 'giasu:news_single' inner.link %}">
+                                    <img class="thumb2 left m-r-10" src="{{ inner.img }}" alt="{{ inner.title }}">
+                                </a>
+                                <h4 class="title f-14 c-000">
+                                    <a href="{% url 'giasu:news_single' inner.link %}">{{ inner.title }}</a>
+                                </h4>
+                                <p class="summary d-table c-000">{{ inner.summary }}</p>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div class="blog_extra d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-start">
+                        <div class="blog_tags">
+                            <span>Tags: </span>
+                            <ul>
+                                <li><a href="#">Education</a>,</li>
+                                <li><a href="#">Math</a>,</li>
+                                <li><a href="#">Food</a>,</li>
+                                <li><a href="#">Schools</a>,</li>
+                                <li><a href="#">Religion</a>,</li>
+                            </ul>
+                        </div>
+                        <div class="blog_social ml-lg-auto">
+                            <span>Share: </span>
+                            <ul>
+                                <li><a href="#"><i class="fab fa-facebook" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i class="fab fa-twitter" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i class="fab fa-google-plus" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i class="fab fa-linkedin" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i class="fas fa-envelope" aria-hidden="true"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- Courses Sidebar -->
+                <div class="col-lg-4">
+                    <div class="sidebar">
+                        <!-- Categories -->
+                        {% categories %}
+
+                        <!-- Latest Course -->
+                        {% latest_courses %}
+
+
+                        <!-- Gallery -->
+                        {% include 'giasu/gallery.html' %}
+
+                        <!-- Tags -->
+                        {% include 'giasu/tags.html' %}
+                        <!-- facebook-->
+                        {% include 'giasu/facebook.html' %}
+
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+    <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static 'js/blog_single.js' %}"></script>
+{% endblock %}
+
+

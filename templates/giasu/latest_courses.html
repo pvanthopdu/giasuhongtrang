@@ -1,0 +1,20 @@
+<!-- Latest Course -->
+<div class="sidebar_section">
+    <div class="sidebar_section_title">Khóa học mới nhất</div>
+    <div class="sidebar_latest">
+
+        <!-- Latest Course -->
+        {% for course in courses %}
+            <div class="latest d-flex flex-row align-items-start justify-content-start" href="{% url 'giasu:course' course.id %}">
+                <div class="latest_image">
+                    <div><img src="{{ course.course_image.url }}" alt=""></div>
+                </div>
+                <div class="latest_content">
+                    <div class="latest_title">{{ course.course_name }}</div>
+                    <div class="latest_des">{{ course.course_description|truncatechars:80 |safe}}</div>
+                    <div class="latest_price">Học phí: {{ course.course_price }} VNĐ</div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>

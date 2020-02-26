@@ -1,0 +1,12 @@
+<!-- Categories -->
+<div class="sidebar_section">
+    <div class="sidebar_section_title">Categories</div>
+    <div class="sidebar_categories">
+        <ul>
+            {% for cate in categories %}
+                <li><a href="{% url 'giasu:listcourse' %}?cate={{ cate.cate_name }}">
+                    <i class="far fa-hand-point-right"></i> {{ cate.cate_name }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>

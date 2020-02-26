@@ -1,0 +1,153 @@
+{% extends 'forum/base.html' %}
+{% load static %}
+{% load carouselSilse_tag %}
+{% load forum_tag %}
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/forum.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/owl.carousel.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/owl.theme.default.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/animate.css' %}">
+
+{% endblock %}
+{% block title %}
+    Gia sư Hồng Trang - Forum
+{% endblock %}
+
+<!-- Home -->
+
+{% block home %}
+    {% block_carousel %}
+{% endblock %}
+
+{% block search %}
+    {% include 'forum/search.html' %}
+{% endblock %}
+<!-- forum -->
+
+{% block forum %}
+    <div class="container">
+
+        <div class="row forum">
+            <div class="col-lg-9 pb-3">
+                <div class="card question-active">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="forum-info" id="{{ question.id }}">
+                                <div class="text-center">
+                                    <img src="{{ question.user.image.url }}"
+                                         class="rounded-circle" alt="{{ question.user.user.firstname }}">
+                                </div>
+                                <div class="text-center btn-question-like">
+                                    <i class="far fa-thumbs-up"></i> {{ question.like }}
+                                </div>
+                            </div>
+                            <div class="forum-content">
+                                <div class="forum-ques">{{ question.content|safe }}</div>
+                                <div class="forum-date"><i
+                                        class="far fa-calendar-alt"></i> {{ question.time|date:'d-m-y, h:s A' }}
+                                </div>
+                            </div>
+                            <div class="forum-info bg-light" style="margin: -1.25em 0px -1.25em 0px">
+                                <div class="text-center">
+                                    <i class="far fa-comment-alt img-comment"></i>
+                                    <div class="number-comment"><span>{{ question.count_discus }}</span></div>
+                                </div>
+                                <div class="text-center"><i class="far fa-eye"></i> {{ question.view }}</div>
+                                <div class="text-center">
+                                    <button class="btn-comment" data-toggle="modal" data-target="#add-discuss"><i
+                                            class="fas fa-plus-circle"></i> Thảo luận
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- discussion -->
+                <div class="card">
+                    <!-- Nav tabs -->
+                    <ul class="card-header nav nav-tabs justify-content-end">
+                        <div class="count-answer mr-auto">{{ reviews|length }} trả lời</div>
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="?order=1">Hữu ích</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="?order=-1">Mới nhất</a>
+                        </li>
+                    </ul>
+                    {% for review in reviews %}
+                        <div class="card card-answer">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="answer-info" id="{{ review.id }}">
+                                        <div class="text-center">
+                                            <img src="{{ review.dis_user.image.url }}"
+                                                 class="rounded-circle" alt="{{ review.dis_user.user.firstname }}">
+                                        </div>
+                                        <div class="text-center btn-answer-like"><i
+                                                class="far fa-thumbs-up"></i> {{ review.like }}
+                                        </div>
+                                    </div>
+                                    <div class="answer-content">
+                                        <div class="forum-answer">
+                                            {{ review.dis_content|safe }}
+                                            {% if review.image != '' %}
+                                                <img src="{{ review.image.url }}" class="mx-auto d-block">
+                                            {% endif %}
+                                            {% if review.curiculum != '' %}
+                                                <a href="{{ review.curiculum.url }}" class="btn-curiculum">
+                                                    <i class="far fa-file"></i> {{ review.curiculum.name }}
+                                                </a>
+                                            {% endif %}
+                                        </div>
+                                        <div class="forum-date"><i
+                                                class="far fa-calendar-alt"></i> {{ review.time|date:'d-m-y, h:s A' }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                <!-- Phan trang -->
+                {% if reviews.has_other_pages %}
+                    <div class="row pagination_row">
+                        <div class="col">
+                            <div class="pagination_container d-flex flex-row align-items-center justify-content-start">
+                                <ul class="pagination_list">
+                                    {% if reviews.has_previous %}
+                                        <li><a href="?page={{ reviews.previous_page_number }}"><i
+                                                class="fa fa-angle-left" aria-hidden="true"></i></a></li>
+                                    {% endif %}
+                                    {% for page_num in reviews.paginator.page_range %}
+                                        {% if page_num == reviews.number %}
+                                            <li class="active"><a href="#">{{ page_num }}</a></li>
+                                        {% else %}
+                                            <li><a href="?page={{ page_num }}">{{ page_num }}</a></li>
+                                        {% endif %}
+                                    {% endfor %}
+                                    {% if reviews.has_next %}
+                                        <li><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                                        </li>
+                                    {% endif %}
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+            <div class="col-lg-3">
+                {% topic %}
+                {% include 'forum/question_hot.html' %}
+            </div>
+        </div>
+        {% addquestion %}
+        {% add_discuss question user %}
+    </div>
+{% endblock %}
+
+
+
+
+
+

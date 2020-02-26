@@ -1,0 +1,9 @@
+{% load forum_tag %}
+<select class="dropdown_item_select home_search_input form-control" name="topic">
+    <option>Chọn chủ đề</option>
+    {% for topic in topics %}
+        <optgroup label="{{ topic }}">
+            {% option_lesson topic %}
+        </optgroup>
+    {% endfor %}
+</select>

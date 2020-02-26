@@ -1,0 +1,335 @@
+{% extends 'giasu/base.html' %}
+{% load static %}
+{% load course_tag %}
+{% load cate_tag %}
+{% load general_tag %}
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'plugins/colorbox/colorbox.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/owl.carousel.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/owl.theme.default.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/animate.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/lesson.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/lesson_responsive.css' %}">
+
+{% endblock %}
+{% block title %}
+    Gia sư Hồng Trang - {{ lesson.lesson_name }}
+{% endblock %}
+{% block home %}
+    <!-- Home -->
+
+    <div class="home">
+        <div class="breadcrumbs_container">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="breadcrumbs">
+                            <ul>
+                                <li><a href="{% url 'giasu:index' %}">Home</a></li>
+                                <li><a href="{% url 'giasu:listcourse' %}">Courses</a></li>
+                                <li>{{ lesson.lesson_name }}</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Course -->
+
+    <div class="course">
+        <div class="container">
+            <div class="row">
+
+                <!-- lesson -->
+                <div class="col-lg-8">
+
+                    <div class="course_container" id="course_container">
+                        <div class="course_title">{{ lesson.lesson_name }}</div>
+
+                        <!-- Information recap of lesson: recap and taget of lesson -->
+                        <div class="tab-panel-header">
+                            <img class="col-lg-4 float-left " style="height: auto"
+                                 src="{{ lesson.lesson_image.url }}"
+                                 alt="{{ lesson.lesson_name }}">
+                            <div class="col-lg-12 tab-header-content ">
+                                <h4>{{ lesson.lesson_name }}</h4>
+                                <div class="pt-2 pb-2">{{ lesson.lesson_recap|safe }}</div>
+                                <h4>Mục tiêu của bài học</h4>
+                                <div class="pt-2">{{ lesson.lesson_target|safe }}</div>
+
+                            </div>
+                        </div>
+
+                        <!-- lesson Tabs -->
+                        <div class="course_tabs_container" id="tab-lesson">
+                            <div class="tabs d-flex flex-row align-items-center justify-content-start">
+                                <div class="tab active tab-content">Nội dung</div>
+                                <div class="tab tab-practice">Bài tập</div>
+                                <div class="tab">Phản hồi</div>
+                            </div>
+                            <div class="tab_panels">
+
+                                <!-- lesson -->
+                                <div class="tab_panel active" id="content-lesson">
+                                    <div class="tab_panel_content">
+                                        <div class="tab_panel_section mt-0">
+                                            <div class="tab_panel_subtitle">Nội dung bài học</div>
+                                            <div class="tab_panel_text">
+                                                {{ lesson.lesson_detail|safe }}
+                                            </div>
+                                        </div>
+                                        <div class="doc-lesson">
+                                            <div class="tab_panel_subtitle">Tài liệu bài học</div>
+                                            {% if lesson.lesson_doc != "" %}
+                                                <div class="link-lesson">
+                                                    <a href="{{ lesson.lesson_doc.url }}">Download file bài học</a>
+                                                </div>
+                                            {% endif %}
+                                            {% if lesson.lesson_video != None %}
+                                                <a href="#video" class="link-lesson"
+                                                   data-toggle="collapse">Video bài học</a>
+                                                {% idvideo-youtube lesson.lesson_video as id %}
+                                                <div id="video" class="collapse pt-3">
+                                                    <div class="embed-responsive embed-responsive-16by9">
+                                                        <iframe class="embed-responsive-item"
+                                                                src="https://www.youtube.com/embed/{{ id }}"
+                                                                allowfullscreen></iframe>
+                                                    </div>
+                                                </div>
+                                            {% endif %}
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <!-- pactice -->
+
+                                <div class="tab_panel tab_panel_2" id="content-practice">
+
+                                    <div class="tab_panel_content">
+                                        <div class="tab_panel_content">
+                                            <!-- Dropdowns -->
+                                            <div class="dropdowns">
+                                                <div class="has_children">
+                                                    <div class="tab_panel_subtitle pt-3">Bài tập vận dụng</div>
+                                                    {% for practice in practices %}
+                                                        <div class="dropdown_item" data-toggle="collapse"
+                                                             data-target="#form-practice">
+                                                            <div class="d-flex align-items-center dropdown_item_title">
+                                                                <div class="mr-auto ">{{ practice.pratice_name }}</div>
+                                                                {% if not user.is_authenticated %}
+                                                                    <a href="{% url 'accounts:login' %}?next={{request.path}}" class="login-do-practice">Đăng nhập để làm bài tập</a>
+                                                                {% endif %}
+                                                            </div>
+                                                            <div class="dropdown_item_text">
+                                                                {{ practice.practice_detail|safe }}
+                                                            </div>
+                                                        </div>
+                                                        <!-- form do practice-->
+                                                        {% if user.is_authenticated %}
+                                                            {% user_do_practice user practice %}
+                                                        {% endif %}
+                                                    {% endfor %}
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Reviews -->
+                                <div class="tab_panel tab_panel_3">
+                                    <div class="tab_panel_title">Course Review</div>
+
+                                    <!-- Rating -->
+                                    <div class="review_rating_container">
+                                        <div class="review_rating">
+                                            <div class="review_rating_num">4.5</div>
+                                            <div class="review_rating_stars">
+                                                <div class="rating_r rating_r_4"><i></i><i></i><i></i><i></i><i></i>
+                                                </div>
+                                            </div>
+                                            <div class="review_rating_text">(28 Ratings)</div>
+                                        </div>
+                                        <div class="review_rating_bars">
+                                            <ul>
+                                                <li><span>5 Star</span>
+                                                    <div class="review_rating_bar">
+                                                        <div style="width:90%;"></div>
+                                                    </div>
+                                                </li>
+                                                <li><span>4 Star</span>
+                                                    <div class="review_rating_bar">
+                                                        <div style="width:75%;"></div>
+                                                    </div>
+                                                </li>
+                                                <li><span>3 Star</span>
+                                                    <div class="review_rating_bar">
+                                                        <div style="width:32%;"></div>
+                                                    </div>
+                                                </li>
+                                                <li><span>2 Star</span>
+                                                    <div class="review_rating_bar">
+                                                        <div style="width:10%;"></div>
+                                                    </div>
+                                                </li>
+                                                <li><span>1 Star</span>
+                                                    <div class="review_rating_bar">
+                                                        <div style="width:3%;"></div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    <!-- Comments -->
+                                    <div class="comments_container">
+                                        <ul class="comments_list">
+                                            <li>
+                                                <div class="comment_item d-flex flex-row align-items-start jutify-content-start">
+                                                    <div class="comment_image">
+                                                        <div><img src="images/comment_1.jpg" alt=""></div>
+                                                    </div>
+                                                    <div class="comment_content">
+                                                        <div class="comment_title_container d-flex flex-row align-items-center justify-content-start">
+                                                            <div class="comment_author"><a href="#">Milley Cyrus</a>
+                                                            </div>
+                                                            <div class="comment_rating">
+                                                                <div class="rating_r rating_r_4">
+                                                                    <i></i><i></i><i></i><i></i><i></i></div>
+                                                            </div>
+                                                            <div class="comment_time ml-auto">1 day ago</div>
+                                                        </div>
+                                                        <div class="comment_text">
+                                                            <p>There are many variations of passages of Lorem Ipsum
+                                                                available, but the majority have alteration in some
+                                                                form, by injected humour.</p>
+                                                        </div>
+                                                        <div class="comment_extras d-flex flex-row align-items-center justify-content-start">
+                                                            <div class="comment_extra comment_likes"><a href="#"><i
+                                                                    class="fa fa-heart"
+                                                                    aria-hidden="true"></i><span>15</span></a></div>
+                                                            <div class="comment_extra comment_reply"><a href="#"><i
+                                                                    class="fa fa-reply" aria-hidden="true"></i><span>Reply</span></a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <ul>
+                                                    <li>
+                                                        <div class="comment_item d-flex flex-row align-items-start jutify-content-start">
+                                                            <div class="comment_image">
+                                                                <div><img src="images/comment_2.jpg" alt=""></div>
+                                                            </div>
+                                                            <div class="comment_content">
+                                                                <div class="comment_title_container d-flex flex-row align-items-center justify-content-start">
+                                                                    <div class="comment_author"><a href="#">John
+                                                                        Tyler</a></div>
+                                                                    <div class="comment_rating">
+                                                                        <div class="rating_r rating_r_4">
+                                                                            <i></i><i></i><i></i><i></i><i></i></div>
+                                                                    </div>
+                                                                    <div class="comment_time ml-auto">1 day ago</div>
+                                                                </div>
+                                                                <div class="comment_text">
+                                                                    <p>There are many variations of passages of Lorem
+                                                                        Ipsum available, but the majority have
+                                                                        alteration in some form, by injected humour.</p>
+                                                                </div>
+                                                                <div class="comment_extras d-flex flex-row align-items-center justify-content-start">
+                                                                    <div class="comment_extra comment_likes"><a
+                                                                            href="#"><i class="fa fa-heart"
+                                                                                        aria-hidden="true"></i><span>15</span></a>
+                                                                    </div>
+                                                                    <div class="comment_extra comment_reply"><a
+                                                                            href="#"><i class="fa fa-reply"
+                                                                                        aria-hidden="true"></i><span>Reply</span></a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <div class="comment_item d-flex flex-row align-items-start jutify-content-start">
+                                                    <div class="comment_image">
+                                                        <div><img src="images/comment_3.jpg" alt=""></div>
+                                                    </div>
+                                                    <div class="comment_content">
+                                                        <div class="comment_title_container d-flex flex-row align-items-center justify-content-start">
+                                                            <div class="comment_author"><a href="#">Milley Cyrus</a>
+                                                            </div>
+                                                            <div class="comment_rating">
+                                                                <div class="rating_r rating_r_4">
+                                                                    <i></i><i></i><i></i><i></i><i></i></div>
+                                                            </div>
+                                                            <div class="comment_time ml-auto">1 day ago</div>
+                                                        </div>
+                                                        <div class="comment_text">
+                                                            <p>There are many variations of passages of Lorem Ipsum
+                                                                available, but the majority have alteration in some
+                                                                form, by injected humour.</p>
+                                                        </div>
+                                                        <div class="comment_extras d-flex flex-row align-items-center justify-content-start">
+                                                            <div class="comment_extra comment_likes"><a href="#"><i
+                                                                    class="fa fa-heart"
+                                                                    aria-hidden="true"></i><span>15</span></a></div>
+                                                            <div class="comment_extra comment_reply"><a href="#"><i
+                                                                    class="fa fa-reply" aria-hidden="true"></i><span>Reply</span></a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                        <div class="add_comment_container">
+                                            <div class="add_comment_title">Add a review</div>
+                                            <div class="add_comment_text">You must be <a href="#">logged</a> in to post
+                                                a comment.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <!--navigation -->
+                        <div class="d-flex align-items-center" style="background-color: rgba(109,249,13,0.33)">
+                            <a class="mr-auto navi-button" href="{% url 'giasu:course' lesson.lesson_course.id %}"
+                               id="button-course"><i class="fas fa-angle-left"> Khóa học</i></a>
+                            <a class="mr-auto navi-button d-none" href="#course_container" id="button-content-lesson">
+                                <i class="fas fa-angle-left"> Bài học</i></a>
+                            <a class="navi-button d-none" href="#" id="button-test-lesson">Kiểm tra kiếm thức đã học
+                                <i class="fas fa-angle-right"></i></a>
+                            <a class="navi-button" href="#tab-lesson" id="button-practice">Bài tập <i
+                                    class="fas fa-angle-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Course Sidebar -->
+                <div class="col-lg-4">
+                    <div class="sidebar">
+                        <!-- Categories -->
+                        {% categories %}
+
+                        <!-- Latest Course -->
+                        {% latest_courses %}
+
+                        <!-- facebook-->
+                        {#                        {% include 'giasu/facebook.html' %}#}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static 'js/lesson.js' %}"></script>
+
+{% endblock %}
+
+

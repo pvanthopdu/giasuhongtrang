@@ -1,0 +1,23 @@
+<div class="modal fade" id="registry_Course" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: #dcfff5">
+                <h4 class="modal-title">Đăng ký khóa học</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                {% csrf_token %}
+                <label for="course" class="register-course">Chọn khóa học</label>
+                <select class="form-control" id="course-user-register">
+                    {% for course in courses %}
+                        <option value="{{ course.course_name }}">{{ course.course_name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger btn-user-register">Register</button>
+                <button type="button" class="btn btn-outline-warning" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

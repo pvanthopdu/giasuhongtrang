@@ -1,0 +1,73 @@
+{% load static %}
+<div class="courses">
+    <div class="section_background parallax-window" data-parallax="scroll"
+         data-image-src="{% static 'images/courses_background.jpg' %}" data-speed="0.8"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="section_title_container text-center">
+                    <h2 class="section_title">Các khóa học phổ biến</h2>
+                    <div class="section_subtitle">Danh sách các khóa học phổ biến ở trung tâm gia sư Hồng
+                        Trang
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row courses_row">
+            {% for course in courses %}
+                <!-- Course -->
+                <div class="col-lg-4 course_col">
+                    <div class="course">
+                        <div class="course_image"><img src="{{ course.course.course_image.url }}" alt=""></div>
+                        <div class="course_body">
+                            <div class="d-flex">
+                                <h3 class="course_title mr-auto"><a
+                                        href="{% url 'giasu:course' course.course.id %}">{{ course.course.course_name }}</a>
+                                </h3>
+                                <div class="btn-register trans_200" data-toggle="modal"
+                                     data-target="#registry_Course">
+                                    <a href="#" class="btn btn-outline-warning pt-1 pb-1">
+                                        <i class="fas fa-cart-plus"
+                                           style="color:#00a23f"> Đăng ký</i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="course_teacher"><i class="fa fa-user" style="font-size:20px;color:#db5246"></i>
+                                {{ course.teacher.get_full_name }}
+                            </div>
+                            <div class="course_text">
+                                {{ course.course.course_description|truncatewords_html:30|safe }}
+                            </div>
+                        </div>
+                        <div class="course_footer">
+                            <div class="course_footer_content d-flex flex-row align-items-center justify-content-start">
+                                <div class="course_info">
+                                    <i class="fa fa-user-friends" aria-hidden="true"></i>
+                                    <span>{{ course.course.course_students.count }}</span>
+                                </div>
+                                <div class="course_info">
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <span>{{ course.star }} Ratings</span>
+                                </div>
+                                <div class="course_price ml-auto">{{ course.course.course_price }} VND</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <div class="courses_button trans_200" data-toggle="modal" data-target="#registry_Course"><a href="#">
+                    <i class="fa fa-user-plus" style="font-size:20px;color:#eaffd1"></i> Đăng ký khóa học</a>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="courses_button trans_200"><a href="{% url 'giasu:listcourse' %}">
+                    <i class="fa fa-search-plus" style="font-size:20px;color:#eaffd1"></i> Hiển thị tất cả các
+                    khóa học</a></div>
+            </div>
+        </div>
+    </div>
+</div>

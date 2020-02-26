@@ -1,0 +1,27 @@
+{% load forum_tag %}
+<div class="feature_search">
+    <div class="container">
+        <form action="{% url 'forum:index' %}" method="post"
+              class="feature_search_form d-flex flex-column align-items-center justify-content-between">
+            {% csrf_token %}
+            <div class="row feater_search_container d-flex flex-row align-items-center justify-content-start">
+                <div class="col-sm-6">
+                    <div class="input-group">
+                            <span class="feature_icon_search">
+                                <i class="fa fa-search" style="color: green; font-size: large"></i></span>
+                        <input type="search" class="form-control feature_search_input" id="search_question"
+                               placeholder="Nhập nội dung câu hỏi cần tìm" name="search_question">
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    {% option_topic %}
+                </div>
+                <div class="col-sm-3 text-center forum-btn-container">
+                    <button type="submit" class="btn btn-info" style="width: 29%">Tìm</button>
+                    <a class="btn btn-success text-light" href="#" style="width: 69%" data-toggle="modal"
+                       data-target="#set-question">Đặt câu hỏi</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

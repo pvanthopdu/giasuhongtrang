@@ -1,0 +1,85 @@
+{% load general_tag %}
+<div class="mr-auto activity-link-conntent"
+     data-toggle="modal" data-target="#detail-group">{{ group.group.name }}
+    <span class="badge badge-warning">{{ group.count_member }}</span>
+</div>
+<div class="modal fade" id="detail-group">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header header-add-group">
+                <h4 class="modal-title"><i class="{{ icon }}"></i> {{ header }}</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="pl-lg-4 pr-lg-4">
+                    <div id="error"></div>
+                    <div class="title-detail-group">
+                        <i class="fas fa-users" style="color: orangered"></i> Tên nhóm: {{ group.group.name }}</div>
+                    <div class="title-detail-group"><i class="{{ icon }}" style="color: orangered"></i>
+                        Danh sách học sinh tham gia nhóm
+                    </div>
+                    <div class="form-group pt-2">
+                        <div class="row pl-4">
+                            {% if group.member.all %}
+                                {% ceil group.member.all|length as limt %}
+                                {% for choice in group.member.all %}
+                                    {% if forloop.counter <= limt %}
+                                        <div class="col-sm-6">{{ forloop.counter }}. {{ choice }}</div>
+                                    {% else %}
+                                        <div class="col-sm-6">{{ forloop.counter }}. {{ choice }}</div>
+                                    {% endif %}
+                                {% endfor %}
+                            {% else %}
+                                <div>None</div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="title-detail-group"><i class="far fa-calendar-alt" style="color: orangered"></i>
+                        Lịch học của nhóm
+                    </div>
+                    <div class="list-calendar-group">
+                        <div class="table-responsive">
+                            <table class="table table-hover .table-bordered">
+                                <thead style="background-color: #dcfff5">
+                                <tr>
+                                    <th>Day</th>
+                                    <th>Time start</th>
+                                    <th>Time end</th>
+                                    <th>Member participation</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for calendar in calendarGroup %}
+                                    <tr>
+                                        <td>{{ calendar.day|date:"d-m-Y" }}</td>
+                                        <td>{{ calendar.start_time }}</td>
+                                        <td>{{ calendar.end_time }}</td>
+                                        <td>
+                                            {% for student in calendar.users_impled.all %}
+                                                <div>{{ student }}</div>
+                                            {% endfor %}
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer justify-content-start">
+                <div class="pl-lg-4">
+                    <a href="{% url 'giasu:manager-group-course' group.id %}?next={{ path }}"
+                       class="btn btn-warning btn-edit-group">Edit</a>
+                    <button type="button" class="btn btn-outline-warning btn-close-group" data-dismiss="modal">Close
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

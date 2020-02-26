@@ -1,0 +1,605 @@
+@charset "utf-8";
+/* CSS Document */
+
+/******************************
+
+[Table of Contents]
+
+1. 1600px
+2. 1440px
+3. 1280px
+4. 1199px
+5. 1024px
+6. 991px
+7. 959px
+8. 880px
+9. 768px
+10. 767px
+11. 539px
+12. 479px
+13. 400px
+
+******************************/
+
+/************
+1. 1600px
+************/
+
+@media only screen and (max-width: 1600px) {
+
+}
+
+/************
+2. 1440px
+************/
+
+@media only screen and (max-width: 1440px) {
+
+}
+
+/************
+3. 1380px
+************/
+
+@media only screen and (max-width: 1380px) {
+
+}
+
+/************
+3. 1280px
+************/
+
+@media only screen and (max-width: 1280px) {
+
+}
+
+/************
+4. 1199px
+************/
+
+@media only screen and (max-width: 1199px) {
+    .home_slider_prev {
+        left: 25px;
+    }
+
+    .home_slider_next {
+        right: 25px;
+    }
+
+    .course_info:first-child {
+        margin-right: 12px;
+    }
+
+    .milestone:not(:last-child)::after {
+        display: none;
+    }
+
+    /*.team_image {*/
+    /*width: 160px;*/
+    /*height: 140px;*/
+    /*}*/
+}
+
+/************
+4. 1100px
+************/
+
+@media only screen and (max-width: 1100px) {
+
+}
+
+/************
+5. 1024px
+************/
+
+@media only screen and (max-width: 1024px) {
+
+}
+
+/************
+6. 991px
+************/
+
+@media only screen and (max-width: 991px) {
+    .main_nav,
+    .search_button {
+        display: none;
+    }
+
+    .top_bar_contact_list li i,
+    .top_bar_contact_list li > div,
+    .login_button a {
+        font-size: 12px;
+    }
+
+    .login_button {
+        width: auto;
+    }
+
+    .hamburger {
+        display: inline-block;
+        margin-left: 5px;
+        margin-right: 10px;
+    }
+
+    .hamburger div {
+        font-size: 20px;
+    }
+
+    .menu {
+        top: 110px;
+    }
+
+    .menu.scrolled {
+        top: 70px;
+    }
+
+    .home_slider_form_container {
+        width: 100%;
+    }
+
+    .home_search_button {
+        margin-top: 15px;
+    }
+
+    .feature_col:not(:last-child) {
+        margin-bottom: 30px;
+    }
+
+    .course_col:not(:last-child) {
+        margin-bottom: 40px;
+    }
+
+    .course_image {
+        height: 300px;
+    }
+
+    .counter_form {
+        position: relative;
+        top: 0;
+        right: auto;
+        width: 100%;
+        height: auto;
+        padding-left: 0px;
+        padding-right: 0px;
+        padding-top: 20px;
+        padding-bottom: 0px;
+    }
+
+    .counter_content {
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+
+    .counter {
+        padding-bottom: 0px;
+    }
+
+    .event_col:not(:last-child) {
+        margin-bottom: 20px;
+    }
+
+    .team_col .team_item {
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+
+    .team_col:first-child .team_item {
+        padding-left: 0;
+        padding-right: 0px;
+    }
+
+    .team_col:nth-child(4n) .team_item {
+        padding-left: 0px;
+        padding-right: 0;
+    }
+
+    .team_col:nth-child(odd) .team_item {
+        padding-right: 6px;
+    }
+
+    .team_col:nth-child(even) .team_item {
+        padding-left: 6px;
+    }
+
+    .news_col:not(:last-child) {
+        margin-bottom: 40px;
+    }
+
+    .newsletter_container {
+        height: auto;
+        padding-top: 40px;
+        padding-bottom: 40px;
+    }
+
+    .newsletter_form_container {
+        margin-top: 19px;
+    }
+
+    .footer_col:not(:last-child) {
+        margin-bottom: 60px;
+    }
+
+    .footer_contact,
+    .footer_links {
+        padding-left: 0;
+    }
+
+    .footer_links ul {
+        columns: 1;
+        -webkit-columns: 1;
+        -moz-columns: 1;
+    }
+
+    .footer_mobile {
+        float: none;
+    }
+
+    .footer_logo_container {
+        margin-top: 0;
+    }
+
+    .copyright {
+        height: auto;
+        padding-top: 30px;
+        padding-bottom: 30px;
+    }
+
+    .cr_list {
+        margin-top: 30px;
+    }
+
+    .cr_list li:not(:last-child) {
+        margin-right: 20px;
+    }
+
+    .copyright div,
+    .cr_list li a {
+        font-size: 13px;
+    }
+
+    .feature_icon {
+        height: 120px;
+    }
+
+    .feature_icon img {
+        height: 120px;
+        max-width: 100%;
+        padding-right: 30px;
+    }
+
+    .feature {
+        padding-top: 15px;
+        padding-left: 30px;
+        padding-right: 30px;
+        box-shadow: 0px 0px 20px rgba(220, 250, 250, 0.85);
+    }
+
+    .feature_title {
+        margin-top: 0px;
+    }
+
+    .team_image {
+        height: 200px;
+    }
+
+    .footer_section > iframe {
+        height: 50vw;
+    }
+}
+
+/************
+7. 959px
+************/
+
+@media only screen and (max-width: 959px) {
+
+}
+
+/************
+8. 880px
+************/
+
+@media only screen and (max-width: 880px) {
+
+}
+
+/************
+9. 768px
+************/
+
+@media only screen and (max-width: 768px) {
+
+}
+
+/************
+10. 767px
+************/
+
+@media only screen and (max-width: 767px) {
+
+    .header.scrolled {
+        top: 0;
+    }
+
+    .header.scrolled .logo_text {
+        font-size: 22px;
+    }
+
+    .hamburger {
+        display: inline-flex;
+        margin-left: 5px;
+        margin-right: 10px;
+    }
+
+    .hamburger div {
+        font-size: 20px;
+    }
+
+    .menu {
+        top: 70px;
+    }
+
+    .home_slider_background {
+        position: absolute;
+        top: 70px;
+        left: 0;
+        max-width: 100%;
+        height: 190px;
+        /*background-repeat: no-repeat;*/
+        /*background-size: cover;*/
+        /*background-position: center center;*/
+    }
+
+    .home {
+        width: 100%;
+        height: 250px;
+    }
+
+    .logo_text {
+        font-size: 25px;
+        margin-top: -10px;
+    }
+
+    .top_bar {
+        display: none;
+    }
+
+    .home_slider_nav {
+        display: none;
+    }
+
+    .feature {
+        padding-top: 15px;
+        padding-left: 15px;
+        padding-right: 15px;
+        box-shadow: 1px 2px 20px rgba(220, 250, 250, 0.85);
+        border-radius: 5px;
+        background-color: #dcffff;
+        margin-bottom: -20px;
+    }
+
+    .feature_icon {
+        height: 70px;
+        width: 140px;
+    }
+
+    .feature_icon img {
+        height: 80px;
+        max-width: 100%;
+        padding-right: 15px;
+    }
+
+    .section_title_container {
+        padding-top: 10px;
+    }
+
+    .section_subtitle {
+        font-size: 14px;
+    }
+
+    .home_slider_title {
+        font-size: 25px;
+    }
+
+    .home_slider_subtitle {
+        font-size: 18px;
+        line-height: 1.0;
+    }
+
+    .home_search_form div {
+        width: 100%;
+    }
+
+    .milestone:not(:last-child) {
+        margin-bottom: 50px;
+    }
+
+    .team_col .team_item {
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+
+    .team_col:first-child .team_item {
+        padding-left: 0;
+        padding-right: 0px;
+    }
+
+    .team_col:nth-child(4n) .team_item {
+        padding-left: 0px;
+        padding-right: 0;
+    }
+
+    .team_col:nth-child(odd) .team_item {
+        padding-right: 0px;
+    }
+
+    .team_col:nth-child(even) .team_item {
+        padding-left: 0px;
+    }
+
+    .team_image {
+        width: 50vw;
+        height: 60vw;
+    }
+
+    .team_image img {
+        width: 100%;
+        height: 100%;
+    }
+
+    .course_image {
+        height: 200px;
+    }
+
+    .container-register-course {
+        display: none;
+    }
+
+    .footer_section > iframe {
+        height: 60vw;
+    }
+
+    .feature_search_form div {
+        padding-top: 5px;
+        padding-bottom: 5px;
+        background-color: #d1f1a9;
+    }
+
+    .feater_search_container {
+        box-shadow: none;
+    }
+
+    .feater_search_container div {
+        padding-top: 2px;
+        padding-bottom: 2px;
+    }
+
+    .feature_icon_search {
+        background-color: #ffffff;
+        margin-left: 0;
+        padding-left: 5px;
+    }
+
+    .forum-btn-container {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .feature_search_input {
+        margin-right: 0;
+        border-right: none;
+    }
+
+    .forum-info div > img {
+        width: 60%;
+        height: 50px;
+    }
+}
+
+/************
+11. 575px
+************/
+
+@media only screen and (max-width: 575px) {
+    .header.scrolled {
+        top: 0;
+    }
+
+    .header.scrolled .logo_text {
+        font-size: 18px;
+    }
+
+    .logo_text {
+        font-size: 20px;
+    }
+
+    h2 {
+        font-size: 24px;
+    }
+
+    p {
+        font-size: 13px;
+    }
+
+    .menu {
+        width: 100%;
+        right: -100%;
+    }
+
+    .home_search_input::-webkit-input-placeholder {
+        font-size: 12px !important;
+    }
+
+    .home_search_input:-moz-placeholder {
+        font-size: 12px !important;
+    }
+
+    .home_search_input::-moz-placeholder {
+        font-size: 12px !important;
+    }
+
+    .home_search_input:-ms-input-placeholder {
+        font-size: 12px !important;
+    }
+
+    .home_search_input::input-placeholder {
+        font-size: 12px !important;
+    }
+
+    .dropdown_item_select,
+    .home_search_button {
+        font-size: 16px;
+    }
+
+    .home_search_button {
+        width: 100px;
+        height: 40px;
+    }
+
+    .newsletter_form_container {
+        width: 100%;
+        padding-left: 0;
+    }
+}
+
+@media only screen and (max-width: 568px) {
+    .header.scrolled .logo_text {
+        font-size: 16px;
+    }
+
+    .logo_text {
+        font-size: 18px;
+    }
+}
+
+/************
+11. 539px
+************/
+
+@media only screen and (max-width: 539px) {
+
+}
+
+/************
+12. 480px
+************/
+@media only screen and (max-width: 480px) {
+
+}
+
+/************
+13. 479px
+************/
+
+@media only screen and (max-width: 479px) {
+
+}
+
+/************
+14. 400px
+************/
+
+@media only screen and (max-width: 400px) {
+
+}

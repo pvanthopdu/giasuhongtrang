@@ -1,0 +1,247 @@
+{% extends 'giasu/base.html' %}
+{% load static %}
+{% load general_tag %}
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/addcourse.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/addcourse_responsive.css' %}">
+
+{% endblock %}
+{% block title %}
+    {{ header }}
+{% endblock %}
+{% block home %}
+
+    <!-- Home -->
+
+    <div class="home">
+        <div class="breadcrumbs_container">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="breadcrumbs">
+                            <ul>
+                                <li><a href="{% url 'giasu:index' %}">Home</a></li>
+                                <li><a href="{% url 'giasu:listcourse' %}">Courses</a></li>
+                                <li>{{ header }}</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="contact">
+        <!-- Contact Info -->
+        <div class="contact_info_container">
+            <div class="container">
+                <div class="contact_form card">
+                    <div class="card-header contact_info_title">{{ header }}</div>
+                    <div class="card-body">
+
+                        <div id="error"></div>
+                        <form class="comment_form" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {{ lesson.media }}
+                            <div class="form-group">
+                                <label class="form_title"
+                                       for="{{ lesson.lesson_name.id_for_label }}"> Lesson name</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class="fas fa-newspaper-o icon" style="color: orangered"></i>
+                                    </span>
+                                    </div>
+                                    {{ lesson.lesson_name }}
+                                </div>
+                                {% if lesson.lesson_name.errors %}
+                                    <ol>
+                                        {% for error in lesson.lesson_name.errors %}
+                                            <li><strong class="text-danger">{{ error|escape }}</strong></li>
+                                        {% endfor %}
+                                    </ol>
+                                {% endif %}
+                            </div>
+                            <div class="form-group">
+                                <label class="form_title"
+                                       for="{{ lesson.lesson_recap.id_for_label }}"> Content recap of lesson</label>
+                                <div class="input-group">
+                                    {{ lesson.lesson_recap }}
+                                </div>
+                                {% if lesson.lesson_recap.errors %}
+                                    <ol>
+                                        {% for error in lesson.lesson_recap.errors %}
+                                            <li><strong class="text-danger">{{ error|escape }}</strong></li>
+                                        {% endfor %}
+                                    </ol>
+                                {% endif %}
+                            </div>
+                            <div class="form-group">
+                                <label class="form_title"
+                                       for="{{ lesson.lesson_target.id_for_label }}"> Target of lesson</label>
+                                <div class="input-group">
+                                    {{ lesson.lesson_target }}
+                                </div>
+                                {% if lesson.lesson_target.errors %}
+                                    <ol>
+                                        {% for error in lesson.lesson_target.errors %}
+                                            <li><strong class="text-danger">{{ error|escape }}</strong></li>
+                                        {% endfor %}
+                                    </ol>
+                                {% endif %}
+                            </div>
+                            <div class="form-group">
+                                <label class="form_title"
+                                       for="{{ lesson.lesson_detail.id_for_label }}"> Content detail of lesson</label>
+                                <div class="input-group">
+                                    {{ lesson.lesson_detail }}
+                                </div>
+                                {% if lesson.lesson_detail.errors %}
+                                    <ol>
+                                        {% for error in lesson.lesson_detail.errors %}
+                                            <li><strong class="text-danger">{{ error|escape }}</strong></li>
+                                        {% endfor %}
+                                    </ol>
+                                {% endif %}
+                            </div>
+                            <div class="form-group">
+                                <label class="form_title" style="color: orangered"
+                                       for="{{ lesson.lesson_image.id_for_label }}"><i class="fas fa-file-alt"></i> Image of course</label>
+                                <div class="pl-2 text-dark">
+                                    {{ lesson.lesson_image }}
+                                </div>
+                                {% if lesson.lesson_image.errors %}
+                                    <ol>
+                                        {% for error in lesson.lesson_image.errors %}
+                                            <li><strong class="text-danger">{{ error|escape }}</strong></li>
+                                        {% endfor %}
+                                    </ol>
+                                {% endif %}
+                            </div>
+                            <div class="form-group">
+                                <label class="form_title" style="color: orangered"
+                                       for="{{ lesson.lesson_doc.id_for_label }}"><i class="fas fa-file-alt"></i> Curriculum doc</label>
+                                <div class="pl-2 text-dark">
+                                    {{ lesson.lesson_doc }}
+                                </div>
+                                {% if lesson.lesson_doc.errors %}
+                                    <ol>
+                                        {% for error in lesson.lesson_doc.errors %}
+                                            <li><strong class="text-danger">{{ error|escape }}</strong></li>
+                                        {% endfor %}
+                                    </ol>
+                                {% endif %}
+                            </div>
+                            <div class="form-group">
+                                <label class="form_title"
+                                       for="{{ lesson.lesson_video.id_for_label }}"> Curriculum video</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                    <span class="input-group-text" style="color: orangered">
+                                        <i class="fas fa-link icon" style="color: orangered"></i>
+                                    </span>
+                                    </div>
+                                    {{ lesson.lesson_video }}
+                                </div>
+                                {% if lesson.lesson_video.errors %}
+                                    <ol>
+                                        {% for error in lesson.lesson_video.errors %}
+                                            <li><strong class="text-danger">{{ error|escape }}</strong></li>
+                                        {% endfor %}
+                                    </ol>
+                                {% endif %}
+                            </div>
+                            <div class="form-group">
+                                <label class="form_title"
+                                       for="{{ lesson.lesson_course.id_for_label }}"> Course</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class="fas fa-bars icon" style="color: orangered"></i>
+                                    </span>
+                                    </div>
+                                    {{ lesson.lesson_course }}
+                                </div>
+                                {% if lesson.lesson_course.errors %}
+                                    <ol>
+                                        {% for error in lesson.lesson_course.errors %}
+                                            <li><strong class="text-danger">{{ error|escape }}</strong></li>
+                                        {% endfor %}
+                                    </ol>
+                                {% endif %}
+                            </div>
+                            <div class="form-group">
+                                <label class="form_title"
+                                       for="{{ lesson.lesson_order.id_for_label }}"> Order of lesson</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class="fas fa-list-ol icon" style="color: orangered"></i>
+                                    </span>
+                                    </div>
+                                    {{ lesson.lesson_order }}
+                                </div>
+                                {% if lesson.lesson_order.errors %}
+                                    <ol>
+                                        {% for error in lesson.lesson_order.errors %}
+                                            <li><strong class="text-danger">{{ error|escape }}</strong></li>
+                                        {% endfor %}
+                                    </ol>
+                                {% endif %}
+                            </div>
+                            <div class="form-group">
+                                <label class="form_title"
+                                       for="{{ lesson.lesson_status.id_for_label }}"> Status of course</label>
+                                <div class="checkbox text-dark">
+                                    {{ lesson.lesson_status }}
+                                    <label>Check to active this lesson</label>
+                                </div>
+                                {% if lesson.lesson_status.errors %}
+                                    <ol>
+                                        {% for error in lesson.lesson_status.errors %}
+                                            <li><strong class="text-danger">{{ error|escape }}</strong></li>
+                                        {% endfor %}
+                                    </ol>
+                                {% endif %}
+                            </div>
+
+                            <div class="card-footer">
+                                <button class="btn btn-danger" type="submit">Submit</button>
+                                <div class="btn btn-outline-danger" style="cursor: pointer" onClick="javascript:history.go(-1);">Cancel</div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+
+{% endblock %}
+{% block javascript %}
+    <script>
+        $("#id_lesson_name").on('keypress keydown keyup', function () {
+            var lesson_name = $(this).val();
+            $.ajax({
+                url: '{% url 'giasu:validate_lesson_name' %}',
+                data: {
+                    'lessom_name': lesson_name
+                },
+                dataType: 'json',
+                success: function (data) {
+                    if (data.is_lesson) {
+                        $("#error").addClass("alert alert-danger");
+                        $("#error").text(data.error_message);
+                    }
+                    else {
+                        $("#error").removeClass("alert alert-danger");
+                        $("#error").text("");
+                    }
+                }
+
+            });
+        });
+
+    </script>
+{% endblock %}
+

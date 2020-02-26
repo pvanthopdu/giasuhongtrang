@@ -1,0 +1,74 @@
+{% load static %}
+<div class="modal fade" id="registry_Course" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Đăng ký khóa học</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body" style="padding: 0">
+                <div class="counter">
+                    <div class="counter_background"
+                         style="background-image:url({% static 'images/register_course.jpg' %})"></div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="counter_content">
+                                    <h3 class="counter_title text-center">Gia sư Hồng Trang</h3>
+                                    <div class="counter_text">
+                                        <h4>Thưa các bậc phụ huynh, các em học sinh.</h4>
+                                        <p>“Với phương châm giúp các bạn học sinh lấy lại kiến thức,
+                                            nắm vững kiến thức; hỗ trợ, tư vấn giáo dục,
+                                            trung tâm gia sư Hồng Trang cùng các bạn tiến bước tương lai,
+                                            là chỗ dựa vững chắc cho các bậc phụ huynh.”</p>
+                                        <h4>Thưa các bậc phụ huynh, các em học sinh.</h4>
+                                        <p>
+                                            Các bậc phụ huynh và các em học sinh quan tâm khóa học nào tại
+                                            Gia sư Hồng Trang, vui lòng nhập thông tin đăng ký khóa
+                                            học. Chúng tôi sẽ liên hệ với các bậc phụ huynh và các em học sinh
+                                            trong thời gian sớm nhất.
+                                        </p>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <div class="card counter_form">
+                            <div class="counter_form_title">Đăng ký khóa học</div>
+                            <div class="card-body" style="padding-top: 0">
+                                <div class="alert alert-danger alert-register d-none"
+                                     style="width: 100%; margin-bottom: 5px; padding: 5px 10px">
+                                </div>
+                                <input type="text" class="counter_input" name="name_register" id="name_register"
+                                       placeholder="Nhập họ tên người đăng ký"
+                                       required="required">
+                                <input type="tel" class="counter_input" placeholder="Nhập số điện thoại"
+                                       id="phone_register" name="phone_register"
+                                       required="required">
+                                <select required name="course_register" id="course_register"
+                                        class="counter_input counter_options">
+                                    <option value="">Chọn khóa học đăng ký</option>
+                                    {% for course in courses %}
+                                        <option value="{{ course.course_name }}">{{ course.course_name }}</option>
+                                    {% endfor %}
+                                </select>
+                                <textarea class="counter_input counter_text_input" placeholder="Nhập tin nhắn"
+                                          required name="msg_register" id="msg_register"></textarea>
+                                <button class="counter_form_button btn btn-danger"
+                                        style="color: white">
+                                    Đăng ký
+                                </button>
+                            </div>
+                        </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

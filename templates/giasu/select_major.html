@@ -1,0 +1,4 @@
+{% for major in majors %}
+    <option {% if major.name_major == major_user %} selected {% endif %}
+                                                    value="{{ major.name_major }}">{{ major.name_major }}</option>
+{% endfor %}

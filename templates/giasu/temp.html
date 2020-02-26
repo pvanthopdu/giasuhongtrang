@@ -1,0 +1,101 @@
+<div class='row edit-calendar-group pt-2'>
+    <input class='col-md-3 form-control' type='date'
+           name='day-calendar-group' id='edit-day-calendar-group'>
+    <div class='col-md-4'>
+        <div class='input-group'>
+            <div class='input-group-prepend'>
+                <span class='input-group-text'>
+                    <i class='far fa-clock'></i>Start
+                </span>
+            </div>
+            <input type='time' class='form-control' name='edit-time-start'>
+        </div>
+    </div>
+    <div class='col-md-4'>
+        <div class='input-group time-end'>
+            <div class='input-group-prepend'>
+                <span class='input-group-text'>
+                    <i class='far fa-clock'></i>End
+                </span>
+            </div>
+            <input type='time' class='form-control' name='edit-time-end'>
+        </div>
+    </div>
+    <div class='col-md-1 btn-edit-calendar'><i class='far fa-trash-alt'></i></div>
+</div>
+
+<div class='col-sm-6'>
+    <div class='form-check'>
+        <label class='form-check-label title-member-course'>
+            <input type='checkbox'
+                   class='form-check-input'
+                   value='{{ member }}'
+                   name='student_impl_group'>
+            {{ member }}
+        </label>
+    </div>
+</div>
+
+<div class="card card-calendar">
+    <div class="card-header d-flex" data-toggle="collapse" href="#calendar-0"
+         style="cursor: pointer; background-color: #dcfff5">
+        <div class="title-day-group align-self-center">22-07-2019</div>
+        <div class="btn-delete-calendar ml-auto">
+            <i class="far fa-trash-alt"></i></div>
+    </div>
+    <div id="calendar-0" class="collapse" data-parent="#calendar-group">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-4">
+                    <input type="date" name="calendar-0-day" value=""
+                           class="form-control" required="required"
+                           id="id_calendar-0-day">
+                </div>
+                <div class="col-md-4">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <i class="far fa-clock"></i>Start
+                            </span>
+                        </div>
+                        <input type="time" name="calendar-0-start_time" value=""
+                               class="form-control"
+                               required="required" id="id_calendar-0-start_time">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <i class="far fa-clock"></i>End
+                            </span>
+                        </div>
+                        <input type="time" name="calendar-0-end_time" value=""
+                               class="form-control"
+                               required="required" id="id_calendar-0-end_time">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group pt-3">
+                <label class="form_title pb-0">Học sinh tham gia buổi học
+                    <span class="badge badge-warning">0</span></label>
+                <div class="row pl-4 member-impl-group-1">
+                    <div class="col-sm-6 text-member"><label for="id_calendar-0-users_impled_0"><input type="checkbox"
+                                                                                                       name="calendar-0-users_impled"
+                                                                                                       value="2"
+                                                                                                       id="id_calendar-0-users_impled_0">
+                        Mrs. Nguyễn Thị Hồng Trang</label></div>
+
+
+                    <div class="col-sm-6 text-member"><label for="id_calendar-0-users_impled_1"><input type="checkbox"
+                                                                                                       name="calendar-0-users_impled"
+                                                                                                       value="3"
+                                                                                                       id="id_calendar-0-users_impled_1">
+                        Mrs. Võ Thị Trinh</label></div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

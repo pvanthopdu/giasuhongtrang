@@ -1,0 +1,5 @@
+<ul>
+{% for teacher in teachers %}
+    <li> {{ teacher.gender }}. {{ teacher.user.username }} </li>
+{% endfor %}
+</ul>
